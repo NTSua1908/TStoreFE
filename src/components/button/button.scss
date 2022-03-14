@@ -1,0 +1,31 @@
+@import '../../scss/variables';
+
+.btn {
+  position: relative;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid #fff;
+  background-color: rgba($color: $header-background, $alpha: 0.5);
+  padding: 10px 15px;
+  color: $text-color;
+  cursor: pointer;
+  margin: 0 3px;
+
+  a {
+    text-decoration: none;
+    color: $text-color;
+  }
+
+  &:hover {
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    background-color: rgba($color: $header-background, $alpha: 0.8);//transparent;
+    box-shadow: 0 0 10px rgba($color: $primary-color, $alpha: 0.3),
+               0 0 20px rgba($color: $primary-color, $alpha: 0.3);
+    a {
+      color: $primary-color;
+    }
+  }
+}
