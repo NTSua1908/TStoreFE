@@ -1,0 +1,23 @@
+
+.modal__item-trailer {
+  position: absolute;
+  width: 60%;
+  height: 70%;
+  box-shadow: 3px 3px 10px rgba($color: #000000, $alpha: 0.5);
+
+  iframe {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 93%;
+  }
+
+  &-close {
+    position: absolute;
+    top: 0px;
+    right: -28px;
+    ion-icon  {
+      font-size: 1.8rem;
+    }
+  }
+}
