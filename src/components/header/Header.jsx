@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import logo from '../../assets/logo.svg';
 import logoPNG from '../../assets/logo.png';
 import './header.scss';
 import { Link, useLocation } from 'react-router-dom';
@@ -87,7 +86,7 @@ function Header(props) {
             <ul className="header__user">
               <span className='username'>Nguyen Thien Sua</span>
               <div className="avatar__container">
-                <img src={logo} alt="" />
+                <img src={logoPNG} alt="" />
               </div>
             </ul>
           }

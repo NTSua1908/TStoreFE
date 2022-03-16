@@ -1,0 +1,44 @@
+@use "../../scss/breakpoint" as *;
+@import '../../scss/variables';
+
+.game__list {
+  position: relative;
+  padding: 0 $padding;
+  width: 100%;
+  margin: 30px auto;
+  max-width: 1660px;
+  .swiper-slide {
+      width: 15%;
+
+      // @include tablet {
+      //     width: 30%;
+      // }
+
+      // @include mobile {
+      //     width: 40%;
+      // }
+  }
+
+  &::after {
+    content: '';
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: $padding;
+    bottom: 0;
+    width: 30px;
+    background-image: linear-gradient(to right, $background-color, rgba($black-color, 0));
+    //background-color: #fff;
+  }
+  &::before {
+    content: '';
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    right: $padding;
+    bottom: 0;
+    width: 30px;
+    background-image: linear-gradient(to left, $background-color, rgba($black-color, 0));
+    //background-color: #fff;
+  }
+}

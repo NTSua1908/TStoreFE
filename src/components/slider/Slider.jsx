@@ -40,24 +40,12 @@ const gameItems = [
 
 export default () => {
 
-  
-
   return ( <>
     <Swiper
-      // install Swiper modules
-      //modules={[Autoplay]}
       grabCursor={true}
       spaceBetween={0}
       slidesPerView={1}
       loop={true}
-      // coverflowEffect={{
-      //   rotate : 50,
-      //   stretch: 0,
-      //   depth: 100,
-      //   modifier: 1,
-      //   slideShadows: true
-      // }}
-      //autoplay={{delay: 4000}}
     >
       {
         gameItems.map((item, index) => (

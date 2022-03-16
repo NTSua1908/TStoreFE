@@ -9,6 +9,7 @@ function App() {
       <Header isLogin/>
       <Routes>
         <Route  path='/' element={<Home />}/>
+        <Route  path='/detail' element={<h1>Thanh </h1>}/>
         <Route  path='*' element={<h1>Khong tim thay</h1>}/>
       </Routes>
     </div>

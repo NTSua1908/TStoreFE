@@ -1,9 +1,16 @@
 
+// .modal-content {
+//   transform: scale(0.5);
+//   transition: transform 0.5s ease;
+// }
+
 .modal__item-trailer {
   position: absolute;
+  min-width: 800px;
+  min-height: 430px;
   width: 60%;
   height: 70%;
-  box-shadow: 3px 3px 10px rgba($color: #000000, $alpha: 0.5);
+  //box-shadow: 3px 3px 10px rgba($color: #000000, $alpha: 0.5);
 
   iframe {
     position: absolute;
@@ -16,8 +23,10 @@
     position: absolute;
     top: 0px;
     right: -28px;
+    cursor: pointer;
     ion-icon  {
-      font-size: 1.8rem;
+      font-size: 30px;
+      pointer-events: none;
     }
   }
 }

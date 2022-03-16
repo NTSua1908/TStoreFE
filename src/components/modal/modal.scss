@@ -5,17 +5,27 @@
   align-items: center;
   justify-content: center;
   position: fixed;
-  z-index: 100;
+  z-index: 9999;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba($color: $black-color, $alpha: 0.4);
-  
-  display: none;
+  visibility: hidden;
   cursor: default;
+  
+  &-content {
+    transform: scale(0.5);
+    transition: transform 0.3s ease;
+  }
+
+  &.active &-content {
+    transform: scale(1);
+  }
 
   &.active {
-    display: flex;
+    //display: flex;
+    visibility: visible;
   }
+  
 }
