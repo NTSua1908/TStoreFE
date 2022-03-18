@@ -3,20 +3,24 @@
 
 .game__list {
   position: relative;
-  padding: 0 $padding;
+  //padding: 0 $padding;
   width: 100%;
-  margin: 30px auto;
+  margin: 30px auto 0;
   max-width: 1660px;
+  height: 350px;
+  &-container {
+    height: 100%;
+  }
   .swiper-slide {
       width: 15%;
 
-      // @include tablet {
-      //     width: 30%;
-      // }
+      @include tablet {
+          width: 30%;
+      }
 
-      // @include mobile {
-      //     width: 40%;
-      // }
+      @include mobile {
+          width: 40%;
+      }
   }
 
   &::after {
@@ -24,7 +28,7 @@
     z-index: 10;
     position: absolute;
     top: 0;
-    left: $padding;
+    left: 0;//$padding;
     bottom: 0;
     width: 30px;
     background-image: linear-gradient(to right, $background-color, rgba($black-color, 0));
@@ -35,7 +39,7 @@
     z-index: 10;
     position: absolute;
     top: 0;
-    right: $padding;
+    right: 0;//$padding;
     bottom: 0;
     width: 30px;
     background-image: linear-gradient(to left, $background-color, rgba($black-color, 0));

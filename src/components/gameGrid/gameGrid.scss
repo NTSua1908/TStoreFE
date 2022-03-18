@@ -1,0 +1,8 @@
+
+
+.game__grid {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+  margin: 40px 20px 0 20px;
+}

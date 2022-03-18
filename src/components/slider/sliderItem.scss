@@ -25,6 +25,7 @@
     //overflow: hidden;
     position: relative;
     .slider__item-thumbnail-img {
+      filter: brightness(110%);
       //width: 100%;
       display: block;
       margin: 0 auto;
