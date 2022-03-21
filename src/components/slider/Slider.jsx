@@ -13,8 +13,6 @@ import SliderItem from './SliderItem';
 import Modal from '../modal/Modal';
 import ModalItemTrailer from '../modal/ModalItemTrailer';
 
-SwiperCore.use([Navigation, Pagination, Autoplay])
-
 const gameItems = [
   {
     'img' : 'https://images4.alphacoders.com/115/thumb-1920-1151249.jpg',
@@ -42,10 +40,12 @@ export default () => {
 
   return ( <>
     <Swiper
+    modules={[Autoplay]}
       grabCursor={true}
       spaceBetween={0}
       slidesPerView={1}
       loop={true}
+      autoplay={{delay: 5000}}
     >
       {
         gameItems.map((item, index) => (
@@ -62,7 +62,7 @@ export default () => {
     </Swiper> 
       {
         gameItems.map((item, index) => (
-          <Modal id={`modal__${index}`}>
+          <Modal id={`modal__${index}`} key={index}>
             <ModalItemTrailer modal={`modal__${index}`} src={item.trailer}/>
           </Modal>
         ))
