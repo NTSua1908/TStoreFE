@@ -123,28 +123,47 @@ const gameItems = [
 ]
 
 function SliderNewGame(props) {
-
-  //const item = props.item
-  const [index, setIndex] = useState(1)
   
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const swiperRef = useRef()
 
+  useEffect(() => {
+    swiperRef.current.swiper.on('mouseover', function(e){
+      
+      
+    })
+    swiperRef.current.swiper.on('mouseleave', function(e){
+      swiperRef.current.swiper.startAutoplay();
+    })
+  }, [])
+
+  const handleMouseOver = () => {
+    swiperRef.current.swiper.autoplay.stop();
+  }
+
+  const handleMouseLeave = () => {
+    swiperRef.current.swiper.autoplay.start();
+  }
+
   return (
     <div className='home__slider-new-game'>
       <div className="home__slider-new-game-container">
-        <div className="home__slider-new-game__img--large" >
+        <div className="home__slider-new-game__img--large"  
+          onMouseOver={handleMouseOver}
+          onMouseLeave={handleMouseLeave}
+        >
           <Swiper 
-            //className='home__slider-new-game__img--large__swiper'
             ref={swiperRef}
             thumbs={{ swiper: thumbsSwiper }}
             spaceBetween={5}
             loop={true}
             autoplay= {
-              { delay: 8000,
-                disableOnInteraction: false}
+              { 
+                delay: 4000,
+                disableOnInteraction: false
               }
+            }
             modules={[Thumbs, Autoplay]}>
               {
                 gameItems.map((item, index) => (
@@ -186,11 +205,6 @@ function SliderNewGame(props) {
               onSwiper={setThumbsSwiper}
               freeMode={true}
               modules={[Autoplay, FreeMode, Navigation, Thumbs]}
-              onActiveIndexChange = {(e) => {
-                console.log('active ', e.realIndex)
-                setIndex(e.realIndex)
-                //swiperRef.current.swiper.slideTo(e.realIndex)
-              } }
               //grabCursor={true}
               centeredSlides={true}
               spaceBetween={5}
