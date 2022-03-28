@@ -5,6 +5,8 @@ import GameList from '../components/gameList/GameList';
 import Logo3D from '../components/logo3D/Logo3D';
 import Search from '../components/search/Search';
 import Slider from '../components/slider/Slider';
+import SliderNewGame from '../components/slider/SliderNewGame/SliderNewGame';
+import Footer from '../components/footer/Footer';
 import './home.scss'
 
 function Home(props) {
@@ -28,7 +30,16 @@ function Home(props) {
           </span>
         </Link>
         <GameGrid/>
+        <Link className='home__title' to="/discount">
+          <span>
+            Game mới cập nhật
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </span>
+        </Link>
+        <SliderNewGame />
+        
       </div>
+      <Footer></Footer>
     </div>
   );
 }
