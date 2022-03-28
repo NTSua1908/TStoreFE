@@ -1,0 +1,165 @@
+@import '../../scss/variables';
+
+.Gamecard--big {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: $white-color;
+  // height: 350px;
+  //width: 250px;
+  height: 270px;
+  display: flex;
+  flex-direction: column;
+  //margin-left: 20px;
+  //background-color: purple;
+
+  &__img {
+    flex: 8;
+    position: relative;
+    filter: brightness(120%);
+    // top: 0;
+    // left: 0;
+    width: 100%;
+    //height: 100%;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px rgba($color: #fff, $alpha: 0.03),
+    inset 2px 2px 5px rgba($color: #fff, $alpha: 0.25),
+    inset -3px -3px 5px rgba($color: #000000, $alpha: 0.5);
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba($color: #000, $alpha: 1);
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    &-content{
+      width: 100%;
+      height: 100%;
+      //@include: none;
+      position: absolute;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50%;
+      color: $text-color;
+      transform: translateY(0px);
+      opacity: 1;
+      transform: translateY(200px);
+      opacity: 0;
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+
+      &-wrapper {
+        flex: 8;
+        position: relative;
+        //bottom: 0;
+
+        h3 {
+          position: absolute;
+          bottom: 100px;
+          display: block;
+          padding: 0 5px;
+          width: 100%;
+          font-weight: 800;
+          text-align: center;
+          color: yellow;
+          text-shadow: 0 0 30px rgba($color: yellow, $alpha: 1.0),
+          0 0 50px rgba($color: yellow, $alpha: 1.0);
+          -webkit-text-stroke-width: 1px;
+          -webkit-text-stroke-color: red;
+          //0 0 20px rgba($color: $primary-color, $alpha: 1.0);
+          // font-size: 0.9rem;
+          //background-color: #fff;
+        }
+
+        p {
+          position: absolute;
+          bottom: 10px;
+          padding: 10px;
+          text-align: center;
+          font-size: 0.8rem;
+          font-weight: 400;
+          color: #e7dddd;
+        }
+      }
+      &-btn-wrapper {
+        flex: 1.5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .btn {
+          height: 30px;
+          padding: 0px;
+          line-height: 28px;
+          font-size: 0.7rem;
+        }
+      }
+    }
+  }
+
+  &__discount {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    overflow: hidden;
+    height: 80px;
+    width: 80px;
+    //background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+      position: absolute;
+      height: 22px;
+      line-height: 22px;
+      width: 115px;
+      color: $primary-color;
+      font-size: 0.6rem;
+      font-weight: 500;
+      background-color: rgb(235, 12, 12);
+      transform: rotate(-45deg) translateY(-10px);
+      text-align: center;
+      box-shadow: 0 5px rgba($color: #000000, $alpha: 0.1);
+    }
+    &::after {
+      z-index: -1;
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 15px;
+      height: 15px;
+      background-color: #952727;
+    }
+    &::before {
+      z-index: -1;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 15px;
+      height: 15px;
+      background-color: #952727;
+    }
+  }
+  
+
+  &:hover  &__img::before {
+      opacity: 0.8;
+  }
+  &:hover  &__img-content {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+}

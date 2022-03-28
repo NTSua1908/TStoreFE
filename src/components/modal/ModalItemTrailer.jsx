@@ -14,12 +14,12 @@ function ModalItemTrailer(props) {
 
 
   return (
-    <div className='modal__item-trailer'>
+    <div className='modal-content modal__item-trailer'>
       <iframe ref={iframeRef}
         src={props.src} 
         title="Trailer"></iframe>
-      <div className="modal__item-trailer-close" onClick={handleClose}>
-        <ion-icon name="close-circle-outline"></ion-icon>
+      <div className="modal__item-trailer-close" title="Đóng" onClick={handleClose}>
+        <ion-icon name="close-circle-outline" slot="icon-only"></ion-icon>
       </div>
     </div>
   );
