@@ -1,0 +1,75 @@
+@use "../../scss/breakpoint" as *;
+@import "../../scss/variables";
+
+.home__popup {
+  position: fixed;
+  right: 10px;
+  top: 80%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: $header-background;
+  transition: transform 0.3s ease, height 0.3s ease;
+  z-index: 1000;
+  &.open {
+    height: 160px;
+    transform: translateY(-60px);
+  }
+
+  &-button {
+    height: 25px;
+    width: 100%;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #000;
+    cursor: pointer;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    ion-icon {
+      position: relative;
+      top: 1px;
+      color: #000;
+      pointer-events: none;
+    }
+  }
+
+  &-list {
+    overflow: hidden;
+    transition: height 0.3s ease;
+    height: 0;
+    &.open {
+      height: 120px;
+    }
+    ul {
+      height: 100%;
+      list-style: none;
+      li {
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 1.3rem;
+        a {
+          color: $text-color;
+          ion-icon {
+            position: relative;
+            top: 3px;
+            pointer-events: none;
+          }
+          &:hover {
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+  }
+
+  &-footer {
+    height: 15px;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}

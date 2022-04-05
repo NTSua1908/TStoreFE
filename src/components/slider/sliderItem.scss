@@ -1,10 +1,11 @@
-@import '../../scss/variables';
+@use "../../scss/breakpoint" as *;
+@import "../../scss/variables";
 
 .slider__item {
   position: relative;
   width: 100%;
   height: 600px;
-  background-position: center -20px ;
+  background-position: center -20px;
   background-size: cover;
   background-repeat: no-repeat;
 
@@ -17,13 +18,20 @@
     right: 50%;
     transform: translateY(-42%) translateX(50%);
     flex-direction: column;
+    @include mobile {
+      width: 100%;
+    }
   }
-  
+
   &-thumbnail {
     width: 100%;
     height: 100%;
     //overflow: hidden;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
     .slider__item-thumbnail-img {
       filter: brightness(110%);
       //width: 100%;
@@ -38,38 +46,37 @@
       //animation: zoomIn 0.3s ease;
       transform: scale(0);
       transition: transform 0.7s ease;
+      @include mobile {
+        width: 90%;
+        height: auto;
+      }
+      @include tablet {
+        width: 90%;
+        height: auto;
+      }
     }
     .slider__item-btn-view {
-      position: absolute;
+      //position: absolute;
       display: flex;
       justify-content: space-around;
       width: 30%;
-      bottom: 50px;
-      left: 50%;
-      transform: translateX(-50%);
+      //bottom: 50px;
+      //left: 50%;
+      //transform: translateX(-50%);
+      margin-top: 20px;
       transition: bottom 0.5s ease;
     }
   }
-  
+
   &.active > &-container > &-thumbnail {
     .slider__item-thumbnail-img {
-        transform: scale(1);
+      transform: scale(1);
     }
     .slider__item-btn-view {
       bottom: 0;
     }
   }
-  // &-backimg {
-  //   position: relative;
-  //   max-width: 100%;
-  //   width: 100%;
-  //   background-image: url("../../assets/logo.png");
-  //   background-position: center;
-  //   background-size: cover;
-  //   background-repeat: no-repeat;
-  //   filter: blur(2px);
-    
-  // }
+
   &-overlay {
     position: absolute;
     top: 0;
@@ -86,15 +93,19 @@
       height: 100%;
       background-color: rgba($color: #000000, $alpha: 0.4);
     }
-  
+
     &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100px;
-        background-image: linear-gradient(to top, $background-color, rgba($black-color, 0));
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background-image: linear-gradient(
+        to top,
+        $background-color,
+        rgba($black-color, 0)
+      );
     }
   }
 }
