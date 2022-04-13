@@ -4,7 +4,7 @@
 .home__popup {
   position: fixed;
   right: 10px;
-  top: 80%;
+  top: 95%;
   transform: translateY(-50%);
   width: 50px;
   height: 40px;
@@ -14,22 +14,22 @@
   z-index: 1000;
   &.open {
     height: 160px;
-    transform: translateY(-60px);
+    transform: translateY(-140px);
   }
 
   &-button {
     height: 25px;
     width: 100%;
     text-align: center;
-    background-color: #fff;
-    border: 1px solid #000;
+    background-color: $header-background;
+    border: 1px solid #616161;
     cursor: pointer;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     ion-icon {
       position: relative;
       top: 1px;
-      color: #000;
+      color: #fff;
       pointer-events: none;
     }
   }
@@ -38,6 +38,8 @@
     overflow: hidden;
     transition: height 0.3s ease;
     height: 0;
+    border-left: 1px solid #616161;
+    border-right: 1px solid #616161;
     &.open {
       height: 120px;
     }
@@ -67,8 +69,8 @@
   &-footer {
     height: 15px;
     width: 100%;
-    background-color: #fff;
-    border: 1px solid #000;
+    background-color: $header-background;
+    border: 1px solid #616161;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }

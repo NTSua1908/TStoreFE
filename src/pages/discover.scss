@@ -1,0 +1,120 @@
+@use "../scss/breakpoint" as *;
+@import "../scss/variables";
+
+.discover {
+  padding-top: $header-height;
+  min-height: 110vh;
+  // background-color: $background-color;
+  width: 100%;
+  &__wrapper {
+    width: 100%;
+    max-width: 1660px;
+    padding: 30px 10%;
+  }
+  &__container {
+    display: flex;
+  }
+  &__filter-title {
+    display: block;
+    font-size: 1.4vw;
+    text-align: center;
+    width: calc(30% - 40px);
+    margin-left: auto;
+    margin-right: 0;
+    padding: 10px 30px;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    cursor: pointer;
+    // align-items: center;
+    // margin: 0 20px 10px;
+    ion-icon {
+      pointer-events: none;
+      font-size: 1.5vw;
+      position: relative;
+      top: 2px;
+      margin-left: 10px;
+    }
+
+    &.menu {
+      display: none;
+      @include tablet {
+        display: block;
+      }
+    }
+    @include tablet {
+      display: none;
+    }
+    @include mobile {
+      width: 50%;
+    }
+  }
+  &__list {
+    flex: 9;
+  }
+  &__filter {
+    position: relative;
+    flex: 3;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    @include tablet {
+      position: fixed;
+      width: 40%;
+      margin-top: 0;
+      top: $header-height;
+      right: -40%;
+      background-color: $background-color;
+      height: calc(100vh - $header-height);
+      z-index: 100;
+      // overflow: auto;
+      border-top: 1px solid #333;
+      border-left: 1px solid #333;
+      transition: right 0.3s ease;
+      // display: none;
+    }
+    @include mobile {
+      width: 100%;
+      right: -100%;
+    }
+    &-container {
+      @include tablet {
+        flex: 9;
+        overflow-y: auto;
+      }
+    }
+    &.active {
+      // display: flex;
+      right: 0;
+    }
+    &-control {
+      flex: 0.5;
+      // position: absolute;
+      // bottom: 0;
+      // display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+      width: 100%;
+      display: none;
+
+      &-close,
+      &-done {
+        flex: 1;
+        background-color: #16181d;
+        padding: 10px 20px;
+        border-radius: 10px;
+        text-align: center;
+        margin: 5px 10px;
+        font-size: 1.5vw;
+        cursor: pointer;
+      }
+      &-done {
+        background-color: #0074e4;
+      }
+
+      @include tablet {
+        display: flex;
+      }
+    }
+  }
+}

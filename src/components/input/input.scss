@@ -1,0 +1,85 @@
+@use "../../scss/breakpoint" as *;
+@import "../../scss/variables";
+
+.input {
+  position: relative;
+  margin: 20px 0;
+  input {
+    height: 70px;
+    outline: none;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: 0 20px;
+    padding-right: 50px;
+    background-color: transparent;
+    color: #fff;
+    width: 100%;
+    font-size: 1.3vw;
+    @include tablet {
+      font-size: 2vw;
+    }
+    @include mobile {
+      font-size: 3vw;
+    }
+
+    &:focus,
+    &.empty:focus {
+      border-color: #0074e4 !important;
+      border-width: 2px;
+    }
+
+    &:focus + label,
+    &:not(:placeholder-shown) + label {
+      top: 0;
+      padding: 0 10px;
+      left: 11px;
+      font-size: 0.8vw;
+      color: #fff;
+      @include tablet {
+        font-size: 1.6vw;
+      }
+      @include mobile {
+        font-size: 2vw;
+      }
+    }
+  }
+  label {
+    position: absolute;
+    font-size: 1.3vw;
+    color: #ccc;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 21px;
+    background-color: $background-color;
+    transition: 0.3s ease;
+    @include tablet {
+      font-size: 2vw;
+    }
+    @include mobile {
+      font-size: 3vw;
+    }
+  }
+
+  &.empty {
+    input {
+      border-color: #982c34;
+      border-width: 2px;
+    }
+    // label {
+    //   color: #ac2421;
+    // }
+  }
+  &__eye {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    cursor: pointer;
+    &.hidden {
+      display: none;
+    }
+    ion-icon {
+      pointer-events: none;
+    }
+  }
+}

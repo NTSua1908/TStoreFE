@@ -1,5 +1,5 @@
 import React from "react";
-import BigGameCard from "../gameCard/BigGameCard";
+import GameCard from "../gameCard/GameCard";
 import "./gameGrid.scss";
 
 // const gameItems = [
@@ -123,7 +123,7 @@ function GameGrid(props) {
   return (
     <div className="game__grid">
       {gameItems.map((item, index) => (
-        <BigGameCard item={item} key={index} />
+        <GameCard item={item} key={index} />
       ))}
     </div>
   );
