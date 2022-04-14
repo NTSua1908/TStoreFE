@@ -4,28 +4,59 @@ import "./input.scss";
 function Input(props) {
   const [isShow, setShow] = useState(false);
 
-  const passwordRef = useRef();
+  const inputRef = useRef();
 
   const isEmail = (value) => {
     var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    return !regex.test(value);
+    return regex.test(value);
+  };
+  const isPhoneNumber = (value) => {
+    var regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+    return regex.test(value);
+  };
+
+  const handleInput = (e) => {
+    e.target.parentElement.classList.remove("empty");
+
+    var isInvalid = false;
+    const value = e.target.value;
+
+    if (props.required && value.trim() === "") isInvalid = true;
+    else if (props.isPassword && value.length < 6) isInvalid = true;
+    else if (props.isEmail && !isEmail(value)) isInvalid = true;
+    else if (props.isPhone && !isPhoneNumber(value)) isInvalid = true;
+    else if (props.isConfirmPassword && value != props.compareValue)
+      isInvalid = true;
+
+    let fill = [...props.filled];
+    fill[props.index] = !isInvalid;
+    props.isPassword && (fill[props.index + 1] = props.compareValue == value);
+    props.setFilled(fill);
+    // console.log("value = ", value);
+    // console.log("change ", isInvalid);
+    // console.log(props.isPhone && isInvalid);
   };
 
   const handleShow = () => {
     setShow(!isShow);
     isShow
-      ? (passwordRef.current.type = "password")
-      : (passwordRef.current.type = "text");
+      ? (inputRef.current.type = "password")
+      : (inputRef.current.type = "text");
   };
 
   useEffect(() => {
-    if (props.isPassword) passwordRef.current.type = "password";
+    if (props.isPassword) inputRef.current.type = "password";
+    else if (props.isConfirmPassword) inputRef.current.type = "password";
+    else if (props.isEmail) inputRef.current.type = "email";
+    else if (props.isNumber) inputRef.current.type = "number";
+    else if (props.isPhone) inputRef.current.type = "tel";
+    // console.log(inputRef.current.type);
   }, []);
 
   return (
     <div className="input">
       <input
-        ref={passwordRef}
+        ref={inputRef}
         type="text"
         value={props.value}
         placeholder=" "
@@ -33,31 +64,24 @@ function Input(props) {
           props.onChange(e.target.value);
         }}
         onInput={(e) => {
-          e.target.parentElement.classList.remove("empty");
-
-          var isInvalid = false;
-          const value = e.target.value;
-
-          if (props.required && value.trim() === "") isInvalid = true;
-          else if (props.isPassword && value.length < 6) isInvalid = true;
-          else if (props.isEmail && isEmail(value)) isInvalid = true;
-
-          let fill = [...props.filled];
-          fill[props.index] = !isInvalid;
-          props.setFilled(fill);
+          handleInput(e);
         }}
+        onFocus={(e) => handleInput(e)}
         onBlur={(e) => {
           var isInvalid = false;
           const value = e.target.value;
 
           if (props.required && value.trim() === "") isInvalid = true;
           else if (props.isPassword && value.length < 6) isInvalid = true;
-          else if (props.isEmail && isEmail(value)) isInvalid = true;
+          else if (props.isEmail && !isEmail(value)) isInvalid = true;
+          else if (props.isPhone && !isPhoneNumber(value)) isInvalid = true;
+          else if (props.isConfirmPassword && value != props.compareValue)
+            isInvalid = true;
 
           isInvalid
             ? e.target.parentElement.classList.add("empty")
             : e.target.parentElement.classList.remove("empty");
-          // console.log(!isInvalid);
+          // console.log("blur ", !isInvalid);
         }}
       />
       <label>
@@ -65,7 +89,9 @@ function Input(props) {
         {props.required && " *"}
       </label>
       <div
-        className={`input__eye ${!props.isPassword && "hidden"}`}
+        className={`input__eye ${
+          !(props.isPassword || props.isConfirmPassword) && "hidden"
+        }`}
         onClick={handleShow}
       >
         {isShow ? (

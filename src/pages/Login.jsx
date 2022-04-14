@@ -75,8 +75,8 @@ function Login(props) {
           <Link to="/policy">Chính sách bảo mật</Link>
         </div>
         <div className="login__signup">
-          Bạn không có tài khoản TStore?
-          <Link to="/policy"> Đăng ký</Link>
+          Bạn chưa có tài khoản TStore?
+          <Link to="/signup"> Đăng ký</Link>
         </div>
       </div>
     </div>
