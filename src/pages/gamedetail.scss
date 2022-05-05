@@ -1,0 +1,497 @@
+@import '../scss/variables';
+
+*{
+  font-family: Brutal,sans-serif;
+
+}
+
+.gamedetail{
+    margin-top: $header-height;
+    padding-left: $padding;
+    padding-right: $padding;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(28, 28, 28);
+
+    &__wrapper{
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__title{
+      margin-bottom: 15px;
+
+      &__typeofgame{
+        display: flex;
+        color: #8f98a0;
+        font-size: 14px;
+        font-family: "Motiva Sans", Sans-serif;
+        padding-top: 15px;
+        padding-bottom: 20px;
+  
+        a {
+          text-decoration: none;    
+        }
+  
+        a:visited{
+          color: #8f98a0;
+        }
+  
+        a:hover{
+          color: aliceblue;
+        }
+  
+        ion-icon {
+          line-height: 35px;
+          position: relative;
+          margin-left: 3px;
+          transition: margin 0.3s ease, font-size 0.3s ease, top 0.3s ease;
+        }
+      }
+
+      &__gamename{
+        text-transform: uppercase;
+        font-family: "Motiva Sans", Sans-serif;
+        color: rgb(245, 245, 245);
+        font-size: 30px;
+        line-height: 35px;
+        letter-spacing: -0.3px;
+      }
+    }
+
+    &__introduction{   
+      display: flex;   
+      position: relative;
+
+      &__swipersection{
+        display: flex;
+        flex-direction: column;
+        flex: 7;
+        overflow: hidden;
+        position: relative;
+        &__beginning{
+          margin-top: 50px;
+          font-size: 16px;
+          line-height: 25px;
+          letter-spacing: -0.2px;
+          text-align: justify;
+        }
+
+        &__content{
+          h3{
+            margin-top: 50px;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 30px;
+            color: #fff
+          }
+
+          p{
+            margin-top: 50px;
+            padding-left: 20px;
+            padding-right: 20px;
+            font-size: 16px;
+            line-height: 25px;
+            letter-spacing: -0.2px;
+            text-align: justify;
+          }
+
+          img{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+
+          &__trailer{
+            margin-top: 30px;
+            position:relative;
+            padding-bottom:56.25%;
+            padding-top:30px;
+            height:0;
+            overflow:hidden;
+            &__videoclip{
+                position:absolute;
+                top:0;
+                left:0;
+                width:100%;
+                height:100%;
+            }
+        }
+
+        }
+      }
+
+      &__inforsection{
+        flex: 3;
+        position: relative;
+      }
+
+      &__infor{
+        position: sticky;
+        top: 100px;
+        display: flex;
+        flex-direction: column;
+        margin-left: 40px;
+        overflow: hidden;
+
+        &__img{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          img{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-content: center;
+            object-fit: contain;
+            border-radius: 4px;
+            padding: 20px;
+          }
+          
+        }
+
+        &__wrapper{
+          margin-top: 10px;
+
+          &__pricecontainer{
+            margin-top: 10px;
+            display: flex;
+            flex-direction: row;
+            -webkit-box-pack: start;
+            justify-content: flex-start;
+
+            &__sale{
+              padding: 5px 10px;
+              border-radius: 4px;
+              background-color: rgb(255, 199, 96);
+              height: 25px;
+              width: 43px;
+              transition: color 125ms ease-in-out;
+              color: #000;
+              font-size: 9px;
+              line-height: 15px;
+              letter-spacing: 1px;
+              text-transform: uppercase;
+              font-weight: 500;
+              text-align: center;
+
+              span{
+              }
+            }
+
+            &__price{
+              margin-left: 10px;
+              padding: 5px 10px;
+              font-size: 14px;
+              display: flex;
+
+              &__oldprice{
+                text-decoration: line-through;
+
+              }
+
+              &__newprice{
+                margin-left: 10px;
+              }
+            }
+
+          }
+
+          &__dateofsale{
+            font-size: 12px;
+            padding: 10px 0px;
+          }
+
+          &__buttonbuynow{
+            font-family: Brutal,sans-serif;
+            background-color:rgb(28, 28, 28);
+            font-size: 14px;
+            font-weight: 600;
+            align-content: center;
+            width: 100%;
+            padding: 20px 0px;
+            border-radius: 4px;
+            border-color: rgb(255, 199, 96);
+            text-transform: uppercase;
+            color: rgb(255, 199, 96);
+            //box-shadow: inset 0 0 0 0 rgb(255, 199, 96);
+            transition: color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+
+            &:hover{
+              //box-shadow: inset 0 0 0 0 rgb(255, 199, 96);
+              background-color:rgb(255, 199, 96) ;
+              color: rgb(28, 28, 28);
+            }
+          }
+
+          &__addcartcontainer{
+            display: flex;
+            margin-top: 10px;
+
+            &__quantity{
+              flex: 3;
+
+              &__minus{
+                float: left;
+                background: #f3f4f4;
+                border: solid 1px #f3f4f4;
+                cursor: pointer;
+                font-weight: 600;
+                font-size: 16px;
+                outline: none;
+                height: 45px;
+                line-height: 45px;
+                width: 45px;
+                text-align: center;
+                border-radius: 4px 0 0 4px;
+                outline: none;
+              }
+
+              &__text{
+                background: #fff;
+                font-weight: 600;
+                height: 45px;
+                line-height: 45px;
+                width: 60px;
+                padding: 0;
+                text-align: center;
+                border: 1px solid #f3f4f4;
+                border-left: none;
+                border-right: none;
+                border-radius: 1px;
+                float: left;
+
+              }
+
+              &__plus{
+                float: left;
+                background: #f3f4f4;
+                border: solid 1px #f3f4f4;
+                cursor: pointer;
+                font-weight: 600;
+                font-size: 16px;
+                outline: none;
+                height: 45px;
+                line-height: 45px;
+                width: 45px;
+                text-align: center;
+                border-radius: 0 4px 4px 0;
+                outline: none;
+                
+              }
+
+            }
+
+            &__buttonaddcart{
+              flex: 4;
+              margin-left: 10px;
+              font-family: Brutal,sans-serif;
+              background-color:transparent;
+              font-size: 14px;
+              align-content: center;
+              height: 45px;
+              width: 100%;
+              font-weight: 600;
+              border-radius: 4px;
+              border-color: rgb(255, 199, 96);
+              text-transform: uppercase;
+              color: rgb(255, 199, 96);
+              box-shadow: inset 0 0 0 0 rgb(255, 199, 96);
+              transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+  
+              &:hover{
+                box-shadow: inset 205px 0 0 0 rgb(255, 199, 96);
+                color: rgb(28, 28, 28);
+              }
+
+            }
+
+          }
+
+          &__productinfor{
+            margin-top: 10px;
+
+            span{
+              width: 200px;
+              transition: color 125ms ease-in-out;
+              color: rgba(245, 245, 245, 0.6);
+              font-size: 14px;
+              font-weight: normal;
+              line-height: 20px;
+              letter-spacing: 0.2px;
+            }
+
+            &__developer{
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              padding: 10px 0px;
+              border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+              &__name{
+                font-size: 14px;
+                text-align: right;
+              }
+            }
+
+            &__publisher{
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              padding: 10px 0px;
+              border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+              &__name{
+                font-size: 14px;
+                text-align: right;
+              }
+
+            }
+
+            &__releasedate{
+              display: flex;
+              flex-direction: row;
+              -webkit-box-pack: justify;
+              justify-content: space-between;
+              padding: 10px 0px;
+              border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+              &__date{
+                font-size: 14px;
+                text-align: right;
+              }
+
+            }
+
+            &__platform{
+              display: flex;
+              flex-direction: row;
+              -webkit-box-pack: justify;
+              justify-content: space-between;
+              padding: 10px 0px;
+              border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+              &__name{
+                font-size: 14px;
+                text-align: right;
+                margin-left: 20px;
+              }
+
+            }
+
+            &__gamemode{
+              display: flex;
+              flex-direction: row;
+              -webkit-box-pack: justify;
+              justify-content: space-between;
+              padding: 10px 0px;
+              border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+              &__name{
+                font-size: 14px;
+                text-align: right;
+                margin-left: 20px;
+              }
+
+            }
+          }
+        }
+
+      }
+    }
+
+    &__rating{
+      display: block;
+      margin-top: 30px;
+      margin-bottom: 150px;
+      padding-left: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      &__title{
+        display: block;
+        margin-top: 40px;
+      }
+      &__chart{
+        display: flex;
+        &__tichcuc{
+          margin-top: 40px;
+          margin-right: 50px;
+          padding-bottom: 15px;
+          height: 20px;
+          width: 130px;
+
+          span{
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+          }
+        }
+
+        &__tieucuc{
+          margin-top: 40px;
+          margin-right: 50px;
+          padding-bottom: 15px;
+          height: 20px;
+          width: 130px;
+
+          span{
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+          }
+            
+        }
+
+        &__tongquan{
+          margin-top: 40px;
+          padding-bottom: 15px;
+          height: 20px;
+          width: 130px;
+
+          span{
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    &__gamelienquan{
+      margin-top: 30px;
+      margin-bottom: 30px;
+      padding-left: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      text-align: center;
+      text-transform: uppercase;
+
+      &__title{
+        line-height: 100px;
+        font-weight: 300px;
+        font-size: 30px;
+      }
+
+    }
+
+    &__gamedaxem{
+      margin-top: 30px;
+      margin-bottom: 80px;
+      padding-left: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      text-align: center;
+      text-transform: uppercase;
+
+      &__title{
+        line-height: 100px;
+        font-weight: 300px;
+        font-size: 30px;
+      }
+
+      &__gamelist{
+        padding: 10px;
+      }
+
+    }
+
+}
