@@ -1,12 +1,16 @@
-@import '../../../scss/variables';
+@use "../../../scss/breakpoint" as *;
+@import "../../../scss/variables";
 
 .home__slider-new-game {
   //height: 400px;
   width: 100%;
-  
+
   margin: 20px 0;
   position: relative;
-  padding-top: 40%;
+  padding-top: 35%;
+  @include tablet {
+    padding-top: 50%;
+  }
 
   &-container {
     position: absolute;
@@ -20,7 +24,7 @@
       height: 100%;
     }
   }
- 
+
   &__img--large {
     flex: 8;
     height: 100%;
@@ -32,7 +36,10 @@
     margin-right: 20px;
     border-radius: 20px;
     overflow: hidden;
-
+    @include tablet {
+      margin-right: 0;
+      border-radius: 10px;
+    }
 
     &-container {
       width: 100%;
@@ -45,6 +52,9 @@
       box-shadow: 5px 5px 10px rgba($color: #fff, $alpha: 0.03),
         inset 2px 2px 5px rgba($color: #fff, $alpha: 0.25),
         inset -3px -3px 5px rgba($color: #000000, $alpha: 0.5);
+      @include tablet {
+        box-shadow: none;
+      }
     }
 
     &-content {
@@ -60,35 +70,75 @@
       transform-origin: 0 50%;
 
       h1 {
+        // font-size: 1.3rem;
+        font-size: 2.2vw;
         color: yellow;
         text-align: center;
-        padding: 15px 0;
+        padding: 10px 0;
+        @include tablet {
+          // font-size: 1vw;
+          padding: 8px 0;
+        }
+        @include mobile {
+          // font-size: 2.2vw;
+          padding: 5px 0;
+        }
       }
 
       &-description {
-        font-size: 1.1rem;
-        margin: 10px 0; 
+        // font-size: 0.8rem;
+        font-size: 1.6vw;
+        margin: 5px 0;
         line-height: 35px;
         text-align: center;
+        @include tablet {
+          font-size: 1.8vw;
+          margin: 5px 0;
+          line-height: 25px;
+        }
+        @include mobile {
+          font-size: 2.2vw;
+          margin: 3px 0;
+          line-height: 15px;
+        }
       }
 
       .btn {
-        margin: 20px 0;
+        margin: 10px 0;
+        @include tablet {
+          display: none;
+        }
       }
 
       &-old {
         text-align: left;
         text-decoration: line-through;
-        font-size: 0.9rem;
+        font-size: 1vw;
         color: #e7dddd;
         line-height: 30px;
+        @include tablet {
+          line-height: 20px;
+          // font-size: 1.2vw;
+        }
+        @include mobile {
+          // font-size: 1.5vw;
+          line-height: 15px;
+        }
       }
       &-new {
         text-align: left;
-        font-size: 1.2rem;
+        font-size: 1.8vw;
         color: yellow;
         animation: lighter 1.5s linear infinite;
         line-height: 30px;
+        @include tablet {
+          font-size: 2vw;
+          line-height: 25px;
+        }
+        @include mobile {
+          font-size: 2.2vw;
+          line-height: 15px;
+        }
       }
     }
     &-wrapper {
@@ -107,14 +157,20 @@
     &-content.active {
       transform: scaleX(1);
     }
-    
-    &-content.active > &-wrapper{
+
+    &-content.active > &-wrapper {
       transform: translateY(0);
-  }
+    }
   }
   &__wrapper {
     flex: 2;
     height: 100%;
+<<<<<<< HEAD
+=======
+    @include tablet {
+      display: none;
+    }
+>>>>>>> 7717cc95ab2afc9ec49fd9c00f9bc9aada568d72
   }
 
   &__img--small {
@@ -135,7 +191,7 @@
       position: absolute;
       z-index: 10;
       margin: 0 10px;
-      content: '';
+      content: "";
       top: 0;
       left: 0;
       right: 0;
@@ -146,7 +202,7 @@
       position: absolute;
       z-index: 10;
       margin: 0 10px;
-      content: '';
+      content: "";
       bottom: 0;
       left: 0;
       right: 0;
@@ -154,5 +210,4 @@
       background: linear-gradient(to top, $background-color, transparent);
     }
   }
-
 }

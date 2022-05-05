@@ -1,0 +1,63 @@
+@use "../../scss/breakpoint" as *;
+@import "../../scss/variables";
+
+.dropdownlist {
+  padding: 0 10px;
+  &__title {
+    width: 100%;
+    font-size: 1.2vw;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    cursor: pointer;
+    ion-icon {
+      transition: transform 0.3s ease;
+    }
+
+    &.active {
+      ion-icon {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+  &__title.active ~ &__list {
+    display: block;
+  }
+
+  &__list {
+    display: none;
+
+    ul {
+      list-style: none;
+    }
+    &-item {
+      font-size: 1.2vw;
+      padding: 15px;
+      color: #ccc;
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: space-between;
+      border: 1px solid transparent;
+      cursor: pointer;
+      ion-icon {
+        pointer-events: none;
+        visibility: hidden;
+        font-size: 1.1vw;
+      }
+      &:hover {
+        color: #fff;
+      }
+      &.active {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid #ccc;
+        color: #fff;
+        border-radius: 5px;
+        ion-icon {
+          visibility: visible;
+        }
+      }
+    }
+  }
+}

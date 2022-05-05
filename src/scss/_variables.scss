@@ -5,31 +5,40 @@ $tablet-width: 1024px;
 
 $white-color: #fff;
 $black-color: #000;
+<<<<<<< HEAD
 $text-color: #fff;
 $background-color: rgb(28, 28, 28);
+=======
+$blue-color: #7b39fd;
+$text-color: #f1f1f1;
+$background-color: #1a1f24;
+>>>>>>> 7717cc95ab2afc9ec49fd9c00f9bc9aada568d72
 $primary-color: yellow;
 $purple-color: #701498;
-$header-color: rgba($color: #1a1a1a, $alpha: 0.2);
+$header-color: rgba(
+  $color: #1a1a1a,
+  $alpha: 0.2,
+);
 $header-background: #1a1a1a;
 
 @keyframes lighter {
-  0%{
+  0% {
     text-shadow: 0 0 10px rgba($color: $primary-color, $alpha: 0.5);
   }
-  25%{
+  25% {
     text-shadow: 0 0 10px rgba($color: $primary-color, $alpha: 0.5),
-    0 0 20px rgba($color: $primary-color, $alpha: 0.5);
+      0 0 20px rgba($color: $primary-color, $alpha: 0.5);
   }
   50% {
     text-shadow: 0 0 10px rgba($color: $primary-color, $alpha: 0.5),
-               0 0 20px rgba($color: $primary-color, $alpha: 0.5),
-               0 0 40px rgba($color: $primary-color, $alpha: 0.3);
+      0 0 20px rgba($color: $primary-color, $alpha: 0.5),
+      0 0 40px rgba($color: $primary-color, $alpha: 0.3);
   }
-  25%{
+  25% {
     text-shadow: 0 0 10px rgba($color: $primary-color, $alpha: 0.5),
-    0 0 20px rgba($color: $primary-color, $alpha: 0.5);
+      0 0 20px rgba($color: $primary-color, $alpha: 0.5);
   }
-  100%{
+  100% {
     text-shadow: 0 0 10px rgba($color: $primary-color, $alpha: 0.5);
   }
 }

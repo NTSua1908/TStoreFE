@@ -1,0 +1,69 @@
+@use "../../scss/breakpoint" as *;
+@import "../../scss/variables";
+
+.home {
+  width: 100%;
+  max-width: 1660px;
+  // background-color: $background-color;
+
+  &__wrapper {
+    position: relative;
+    width: 95%;
+    margin-top: 10px;
+    padding: 40px;
+    margin: 0 auto;
+    border-radius: 20px;
+    // background-color: $background-color;
+    box-shadow: 5px 5px 10px rgba($color: #fff, $alpha: 0.03),
+      inset 2px 2px 5px rgba($color: #fff, $alpha: 0.25),
+      inset -3px -3px 5px rgba($color: #000000, $alpha: 0.5);
+    @include tablet {
+      width: 97%;
+      padding: 30px 10px;
+    }
+    @include mobile {
+      width: 99%;
+      padding: 30px 5px;
+    }
+  }
+
+  &__title {
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    //background-color: antiquewhite;
+    margin-top: 60px;
+    margin-left: 30px; //calc($padding + 10px);
+    text-decoration: none;
+    color: $white-color;
+    @include tablet {
+      margin-top: 30px;
+      margin-left: 30px;
+    }
+    @include mobile {
+      margin-top: 20px;
+      margin-left: 30px;
+    }
+    span {
+      font-size: 1.2rem;
+      font-weight: 500;
+      ion-icon {
+        line-height: 35px;
+        position: relative;
+        top: 3px;
+        margin-left: 3px;
+        transition: margin 0.3s ease, font-size 0.3s ease, top 0.3s ease;
+      }
+    }
+    &:hover {
+      text-shadow: 0 0 10px rgba($color: $primary-color, $alpha: 1),
+        0 0 20px rgba($color: $primary-color, $alpha: 0.5);
+      //0 0 40px rgba($color: $primary-color, $alpha: 1.0);
+      ion-icon {
+        font-size: 1.2rem;
+        margin-left: 10px;
+        top: 4px;
+      }
+    }
+  }
+}

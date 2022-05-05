@@ -1,5 +1,5 @@
 @use "../../scss/breakpoint" as *;
-@import '../../scss/variables';
+@import "../../scss/variables";
 
 .game__list {
   position: relative;
@@ -7,43 +7,60 @@
   width: 100%;
   margin: 30px auto 0;
   max-width: 1660px;
+  padding: 0 60px;
+  @include tablet {
+    padding: 0 20px;
+  }
   //height: 60vh;
   // height: 350px;
   &-container {
     height: 100%;
   }
   .swiper-slide {
-      width: 15%;
+    width: 17%;
+    @include tablet {
+      width: 20%;
+    }
 
-      @include tablet {
-          width: 30%;
-      }
-
-      @include mobile {
-          width: 40%;
-      }
+    @include mobile {
+      width: 30%;
+    }
   }
 
-  &::after {
-    content: '';
-    z-index: 10;
-    position: absolute;
-    top: 0;
-    left: 0;//$padding;
-    bottom: 0;
-    width: 30px;
-    background-image: linear-gradient(to right, $background-color, rgba($black-color, 0));
-    //background-color: #fff;
-  }
-  &::before {
-    content: '';
-    z-index: 10;
-    position: absolute;
-    top: 0;
-    right: 0;//$padding;
-    bottom: 0;
-    width: 30px;
-    background-image: linear-gradient(to left, $background-color, rgba($black-color, 0));
-    //background-color: #fff;
-  }
+  // &::after {
+  //   content: "";
+  //   z-index: 10;
+  //   position: absolute;
+  //   top: 0;
+  //   left: 60px; //$padding;
+  //   bottom: 0;
+  //   width: 30px;
+  //   background-image: linear-gradient(
+  //     to right,
+  //     $background-color,
+  //     rgba($black-color, 0)
+  //   );
+  //   @include tablet {
+  //     left: 20px;
+  //   }
+  //   //background-color: #fff;
+  // }
+  // &::before {
+  //   content: "";
+  //   z-index: 10;
+  //   position: absolute;
+  //   top: 0;
+  //   right: 60px; //$padding;
+  //   bottom: 0;
+  //   width: 30px;
+  //   background-image: linear-gradient(
+  //     to left,
+  //     $background-color,
+  //     rgba($black-color, 0)
+  //   );
+  //   @include tablet {
+  //     right: 20px;
+  //   }
+  //   //background-color: #fff;
+  // }
 }
