@@ -1,50 +1,15 @@
-import React, { useRef } from "react";
-import DropdownList from "../components/dropdownList/DropdownList";
-import Search from "../components/search/Search";
-import GameGrid from "../components/gameGrid/GameGrid";
-import "./discover.scss";
-import Paging from "../components/paging/Paging";
-
-const features = [
-  "Một người chơi",
-  "Hỗ trợ tay cầm",
-  "Nhiều người chơi",
-  "Hợp tác",
-  "Thành tựu",
-  "Cạnh tranh",
-  "VR",
-];
-const genre = [
-  "Hành động",
-  "Indie",
-  "RPG",
-  "Chiến lược",
-  "Sống sót",
-  "Rogue-Lite",
-  "Cuộc phiêu lưu",
-  "Mở rộng thế giới",
-  "Người bắn súng",
-  "Ghép hình",
-  "Ngôi thứ nhất",
-  "Tường thuật",
-  "Mô phỏng",
-  "Bình thường",
-  "Theo lượt",
-  "Thăm dò",
-  "Kinh dị",
-  "Người khai thác",
-  "Buổi tiệc",
-  "Thông tin bên lề",
-  "Người xây dựng thành phố",
-  "Tàng hình",
-  "Trận đánh",
-  "Phim hài",
-  "Phiêu lưu hành động",
-  "Cuộc đua",
-  "Chơi bài",
-  "Các môn thể thao",
-  "Dungeon Crawler",
-];
+import React from "react";
+import { Link } from "react-router-dom";
+import GameGrid from "../../components/gameGrid/GameGrid";
+import GameList from "../../components/gameList/GameList";
+import Logo3D from "../../components/logo3D/Logo3D";
+import Search from "../../components/search/Search";
+import Slider from "../../components/slider/Slider";
+import SliderNewGame from "../../components/slider/SliderNewGame/SliderNewGame";
+import Footer from "../../components/footer/Footer";
+import "./home.scss";
+import HomePopUp from "../../components/homePopup/HomePopUp";
+import Header from "../../components/header/Header";
 
 const gameItems = [
   {
@@ -175,69 +140,40 @@ const gameItems = [
   },
 ];
 
-function Discover(props) {
-  const filterRef = useRef();
-
-  const handleActiveFilter = () => {
-    filterRef.current.classList.add("active");
-  };
-
-  const handleInactiveFilter = () => {
-    filterRef.current.classList.remove("active");
-  };
-
-  const handleFilter = () => {
-    filterRef.current.classList.remove("active");
-    //do something
-  };
-
+function Home(props) {
   return (
-    <div className="discover">
-      <div className="discover__wrapper">
+    <div className="home">
+      <Header />
+      <Slider />
+      <div className="home__wrapper">
         <Search />
-        <div
-          className="discover__filter-title"
-          onClick={handleFilter}
-          title="Nhấn để lọc"
-        >
-          Bộ lọc<ion-icon name="filter-outline"></ion-icon>
-        </div>
-        <div
-          className="discover__filter-title menu"
-          onClick={handleActiveFilter}
-          title="Hiển thị bộ lọc"
-        >
-          Bộ lọc<ion-icon name="filter-outline"></ion-icon>
-        </div>
-        <div className="discover__container">
-          <div className="discover__list">
-            <GameGrid item={gameItems} />
-            <Paging />
-          </div>
-          <div className="discover__filter" ref={filterRef}>
-            <div className="discover__filter-container">
-              <DropdownList title="Đặc điểm" item={features} name="Features" />
-              <DropdownList title="Thể loại" item={genre} name="Genre" />
-            </div>
-            <div className="discover__filter-control">
-              <div
-                className="discover__filter-control-close"
-                onClick={handleInactiveFilter}
-              >
-                Đóng
-              </div>
-              <div
-                className="discover__filter-control-done"
-                onClick={handleFilter}
-              >
-                Lọc
-              </div>
-            </div>
-          </div>
-        </div>
+        <Link className="home__title" to="/popular">
+          <span>
+            Top game thịnh hành
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </span>
+        </Link>
+        <GameList item={gameItems} />
+        {/* <Logo3D /> */}
+        <Link className="home__title" to="/discount">
+          <span>
+            Top game giảm giá
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </span>
+        </Link>
+        <GameList item={gameItems} />
+        <Link className="home__title" to="/discount">
+          <span>
+            Game mới cập nhật
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </span>
+        </Link>
+        <SliderNewGame />
       </div>
+      <Footer></Footer>
+      <HomePopUp />
     </div>
   );
 }
 
-export default Discover;
+export default Home;

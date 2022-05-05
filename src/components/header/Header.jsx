@@ -74,7 +74,7 @@ function Header(props) {
         />
         <label
           className="header__menu-button-container"
-          for="header__menu-toggle"
+          htmlFor="header__menu-toggle"
         >
           <div className="header__menu-button"></div>
         </label>

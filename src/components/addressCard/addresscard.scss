@@ -1,0 +1,99 @@
+@use "../../scss/breakpoint" as *;
+@import "../../scss/variables";
+
+.addresscard {
+  background-color: #16181d;
+  border-radius: 10px;
+  display: flex;
+  box-shadow: 1px 1px 3px rgba($color: #fff, $alpha: 0.2);
+  margin-bottom: 20px;
+  padding: 25px 20px 25px 0;
+  @include mobile {
+    padding: 15px 10px 15px 0;
+  }
+  &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    @include tablet {
+      width: 60px;
+    }
+    ion-icon {
+      pointer-events: none;
+      font-size: 3vw;
+      @include tablet {
+        font-size: 6vw;
+      }
+    }
+  }
+  &__information {
+    flex: 1;
+    &-location,
+    &-description,
+    &-phone {
+      font-size: 1.3vw;
+      padding: 5px 0;
+      @include tablet {
+        font-size: 2vw;
+      }
+      @include mobile {
+        padding: 2px;
+      }
+    }
+    &-latlng {
+      display: block;
+      margin: 5px 0;
+      @include tablet {
+        margin: 2px 0;
+      }
+    }
+    // &-lat {
+    //   margin-left: 5px;
+    // }
+    &-lng,
+    &-lat {
+      font-size: 0.9vw;
+      @include tablet {
+        font-size: 1.3vw;
+      }
+    }
+  }
+  &__option {
+    position: relative;
+    cursor: pointer;
+    ion-icon {
+      pointer-events: none;
+      @include mobile {
+        font-size: 4vw;
+      }
+    }
+    &:hover &-list {
+      display: block;
+    }
+    &-list {
+      position: absolute;
+      top: 20%;
+      left: -620%;
+      background-color: $background-color;
+      padding: 10px 20px;
+      border-radius: 2px;
+      box-shadow: 1px 1px 1px rgba($color: #fff, $alpha: 0.1);
+      @include mobile {
+        padding: 3px 5px;
+      }
+      display: none;
+      &:hover {
+        background-color: #202428;
+      }
+      a {
+        text-decoration: none;
+        font-size: 1.3vw;
+        @include tablet {
+          font-size: 2vw;
+        }
+      }
+      // background-color: aliceblue;
+    }
+  }
+}

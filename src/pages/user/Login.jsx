@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import Input from "../components/input/Input";
+import Input from "../../components/input/Input";
 import "./login.scss";
-import Logo from "../assets/logo.png";
+import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 
 function Login(props) {
-  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [filled, setFilled] = useState([false, false]);
   const [isCompleted, setCompleted] = useState(false);
@@ -31,19 +31,17 @@ function Login(props) {
     }
   };
 
-  // const usernameRef = useRef();
-  // const passwordRef = useRef();
-
   return (
     <div className="login">
       <div className="login__container">
         <img className="login__logo" src={Logo} alt="" />
         <h1 className="login__title">Đăng nhập vào TStore</h1>
         <Input
-          placeholder="Tên đăng nhập"
-          value={userName}
-          onChange={setUserName}
+          placeholder="Email"
+          value={email}
+          onChange={setEmail}
           required
+          isEmail
           filled={filled}
           setFilled={setFilled}
           index={0}

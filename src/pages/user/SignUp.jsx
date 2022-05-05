@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./signup.scss";
-import Input from "../components/input/Input";
-import Logo from "../assets/logo.png";
+import Input from "../../components/input/Input";
+import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 
 function SignUp(props) {
@@ -11,7 +11,7 @@ function SignUp(props) {
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [policy, setPolicy] = useState("false");
+  const [policy, setPolicy] = useState(false);
 
   const [filled, setFilled] = useState([
     false,
@@ -35,7 +35,13 @@ function SignUp(props) {
       setCompleted(true);
     }
     // filled &&
-    // console.log("change", filled, filled.indexOf(false));
+    // console.log(
+    //   "change",
+    //   filled,
+    //   filled.indexOf(false),
+    //   policy,
+    //   filled.indexOf(false) != -1 || !policy
+    // );
   }, [filled, policy]);
 
   useEffect(() => {

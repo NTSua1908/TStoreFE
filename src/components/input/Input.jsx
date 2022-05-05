@@ -16,6 +16,7 @@ function Input(props) {
   };
 
   const handleInput = (e) => {
+    if (!props.filled) return;
     e.target.parentElement.classList.remove("empty");
 
     var isInvalid = false;
@@ -30,7 +31,8 @@ function Input(props) {
 
     let fill = [...props.filled];
     fill[props.index] = !isInvalid;
-    props.isPassword && (fill[props.index + 1] = props.compareValue == value);
+    if (props.isPassword && props.compareValue)
+      fill[props.index + 1] = props.compareValue == value;
     props.setFilled(fill);
     // console.log("value = ", value);
     // console.log("change ", isInvalid);
@@ -54,7 +56,7 @@ function Input(props) {
   }, []);
 
   return (
-    <div className="input">
+    <div className={`input ${props.inWhite && "white"}`}>
       <input
         ref={inputRef}
         type="text"
@@ -68,6 +70,8 @@ function Input(props) {
         }}
         onFocus={(e) => handleInput(e)}
         onBlur={(e) => {
+          if (!props.filled) return;
+
           var isInvalid = false;
           const value = e.target.value;
 

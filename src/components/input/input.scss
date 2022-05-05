@@ -52,6 +52,7 @@
     left: 21px;
     background-color: $background-color;
     transition: 0.3s ease;
+    user-select: none;
     @include tablet {
       font-size: 2vw;
     }
@@ -80,6 +81,28 @@
     }
     ion-icon {
       pointer-events: none;
+    }
+  }
+
+  &.white {
+    input {
+      border: 1px solid rgb(27, 27, 27);
+      color: #333;
+
+      &:focus,
+      &.empty:focus {
+        border-color: #000 !important;
+        border-width: 2px;
+      }
+
+      &:focus + label,
+      &:not(:placeholder-shown) + label {
+        color: #333;
+      }
+    }
+    label {
+      color: #333;
+      background-color: aliceblue;
     }
   }
 }

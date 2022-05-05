@@ -1,0 +1,141 @@
+@use "../../scss/breakpoint" as *;
+@import "../../scss/variables";
+
+.newAdress {
+  // height: 100px;
+  // width: 200px;
+  margin-top: $header-height;
+  background-color: rgba($color: #000000, $alpha: 0.2);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s ease;
+
+  // transition-delay: 1s;
+
+  &-wrapper {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 1px 1px 3px rgba($color: #fff, $alpha: 0.4);
+  }
+  &-title {
+    position: relative;
+    flex: 1;
+    background-color: aliceblue;
+    border-bottom: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    & > ion-icon,
+    span {
+      color: #000;
+      font-size: 1.5vw;
+      font-weight: 600;
+    }
+    & > ion-icon {
+      margin-right: 6px;
+      font-size: 2vw;
+      pointer-events: none;
+    }
+    &-close {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      box-shadow: 1px 1px 3px rgba($color: #000000, $alpha: 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      &:hover {
+        box-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.8);
+      }
+      ion-icon {
+        pointer-events: none;
+        color: #000;
+        font-size: 2vw;
+      }
+    }
+  }
+  &-container {
+    flex: 9;
+    display: flex;
+  }
+  &-info {
+    flex: 3;
+    background-color: aliceblue;
+    color: #000;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    &-title {
+      color: #333;
+      text-align: center;
+      font-size: 2.4vw;
+    }
+    &-location {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      ion-icon {
+        pointer-events: none;
+        font-size: 3vw;
+        display: block;
+        color: #333;
+      }
+      p,
+      span {
+        width: 100%;
+        color: #333;
+        text-align: center;
+        padding: 30px 20px;
+        font-size: 1.3vw;
+        padding-bottom: 10px;
+      }
+      span {
+        font-size: 1vw;
+      }
+    }
+    &-container {
+    }
+    &-confirm,
+    &-cancel {
+      height: 60px;
+      width: 100%;
+      outline: none;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      display: block;
+      border: none;
+      padding: 15px 40px;
+      text-align: center;
+      background-color: #0074e4;
+      cursor: pointer;
+    }
+    &-cancel {
+      background-color: #333;
+    }
+  }
+  &-map {
+    flex: 7;
+  }
+  &.active {
+    display: flex;
+    transform: scale(1);
+  }
+}

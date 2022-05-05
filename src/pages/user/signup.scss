@@ -1,8 +1,8 @@
-@use "../scss/breakpoint" as *;
-@import "../scss/variables";
+@use "../../scss/breakpoint" as *;
+@import "../../scss/variables";
 
-.login {
-  padding-top: $header-height;
+.signup {
+  padding-top: calc($header-height * 1.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +10,7 @@
   min-height: 100vh;
   &__container {
     background-color: #202020;
-    width: 40%;
+    width: 45%;
     padding: 30px 80px;
     border-radius: 20px;
     @include tablet {
@@ -41,29 +41,32 @@
       font-size: 3.5vw;
     }
   }
-  &__remember {
+  &__policy {
     height: 20px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
     margin: 25px 0;
-    &-me {
-      display: flex;
-      align-items: center;
-      input {
-        height: 20px;
-        width: 20px;
-        margin-right: 10px;
-      }
-      label {
-        font-size: 1vw;
-      }
+    input {
+      height: 20px;
+      width: 20px;
+      margin-right: 10px;
     }
-    &-forgot {
-      font-size: 1vw;
-      a {
-        // text-decoration: none;
-        color: $text-color;
-      }
+    label {
+      font-size: 1.3vw;
+    }
+  }
+  &__confirm-email {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      height: 70px;
+      margin: 0;
+      margin-left: 10px;
+      padding: 15px 20px;
+    }
+    .input {
+      margin: 0;
     }
   }
   &__submit {
@@ -71,7 +74,7 @@
     // outline: 1px solid #0074e4;
 
     border: none;
-    padding: 15px 40px;
+    padding: 20px 50px;
     text-align: center;
     background-color: #0074e4;
     color: #fff;
@@ -84,8 +87,7 @@
       cursor: no-drop;
     }
   }
-  &__policy,
-  &__signup {
+  &__signin {
     text-align: center;
     color: #b9b9b9;
     font-size: 1vw;
