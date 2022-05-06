@@ -165,12 +165,9 @@
   &__wrapper {
     flex: 2;
     height: 100%;
-<<<<<<< HEAD
-=======
     @include tablet {
       display: none;
     }
->>>>>>> 7717cc95ab2afc9ec49fd9c00f9bc9aada568d72
   }
 
   &__img--small {

@@ -72,7 +72,7 @@ function GameDatatable(props) {
     <div className="game__datatable">
       <div className="game__datatable-Title">
         Thêm đĩa game
-        <Link to="/users/new" className="link">
+        <Link to="newgame" className="link">
           Thêm mới +
         </Link>
       </div>

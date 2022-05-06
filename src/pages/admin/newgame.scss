@@ -1,0 +1,18 @@
+.newgame {
+  position: relative;
+  background-color: white;
+  color: #333;
+
+  &__container {
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    min-height: 100vh;
+    background-color: white;
+    transition: 0.5s;
+    &.active {
+      width: calc(100% - 90px);
+      left: 90px;
+    }
+  }
+}
