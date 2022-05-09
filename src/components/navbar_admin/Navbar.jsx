@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./navbar.scss";
 
 function Navbar(props) {
@@ -17,4 +17,4 @@ function Navbar(props) {
   );
 }
 
-export default Navbar;
+export default memo(Navbar);

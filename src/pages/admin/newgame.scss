@@ -1,3 +1,5 @@
+@import "../../scss/variables";
+
 .newgame {
   position: relative;
   background-color: white;
@@ -13,6 +15,94 @@
     &.active {
       width: calc(100% - 90px);
       left: 90px;
+    }
+  }
+  &__wrapper {
+    padding: 30px;
+    .block-center {
+      width: 30px;
+    }
+  }
+  &__title {
+    text-align: center;
+    background-color: $blue-color; //rgba($color: $blue-color, $alpha: 0.7);
+    padding: 10px;
+    color: #fff;
+    font-size: 25px;
+  }
+  &__input {
+    padding: 20px;
+    &-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      .border-center {
+        height: 260px;
+        width: 2px;
+        background-color: #333;
+        margin: 0 60px;
+      }
+      .input {
+        flex: 1;
+      }
+      .dropdownlist {
+        flex: 1;
+      }
+      &-block {
+        flex: 1;
+      }
+    }
+    &-title {
+      display: block;
+      font-size: 18px;
+      padding: 15px 10px 10px 5px;
+      font-weight: 600;
+    }
+    &-imageReview {
+      max-width: 30vw;
+      max-height: 20vh;
+    }
+  }
+
+  &__button {
+    padding: 15px 25px;
+    border-radius: 8px;
+    background-color: $blue-color;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+  }
+  &__gridImage {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    &-container {
+      position: relative;
+      padding: 10px;
+      border: 1px solid rgb(190, 190, 190);
+      border-radius: 10px;
+      img {
+        width: 100%;
+      }
+      &-close {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        display: none;
+        cursor: pointer;
+        border-radius: 50%;
+        background-color: #fff;
+        ion-icon {
+          pointer-events: none;
+        }
+      }
+      &:hover &-close {
+        display: block;
+      }
     }
   }
 }

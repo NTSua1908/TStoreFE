@@ -71,6 +71,7 @@ function SignUp(props) {
           setFilled={setFilled}
           index={0}
         />
+
         <Input
           placeholder="Email"
           value={email}
