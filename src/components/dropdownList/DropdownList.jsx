@@ -10,23 +10,34 @@ function DropdownList(props) {
       ".dropdownlist__list .dropdownlist__list-item" + props.name
     );
     setListItem(list);
+    // console.log("drop down");
     // console.log(listItem);
-  }, []);
+  }, [props.item]);
 
   const handleShow = () => {
     menuRef.current.classList.toggle("active");
   };
 
   const handleActive = (index) => {
-    // console.log(props.item[index]);
-    listItem[index].classList.toggle("active");
-
-    if (listItem[index].classList.contains("active")) {
-      props.setSelected([...props.selected, props.item[index]]);
+    if (props.one) {
+      // console.log(listItem);
+      listItem.forEach((item) => {
+        item.classList.remove("active");
+      });
+      listItem[index].classList.add("active");
+      props.setSelected(props.item[index].id);
     } else {
-      var i = props.selected.indexOf(props.item[index]);
-      if (index > -1) {
-        props.setSelected(props.selected.filter((item, index) => index != i));
+      listItem[index].classList.toggle("active");
+
+      const id = props.item[index].id;
+
+      if (listItem[index].classList.contains("active")) {
+        props.setSelected([...props.selected, id]);
+      } else {
+        var i = props.selected.indexOf(id);
+        if (index > -1) {
+          props.setSelected(props.selected.filter((item, index) => index != i));
+        }
       }
     }
   };
@@ -49,7 +60,7 @@ function DropdownList(props) {
                 handleActive(index);
               }}
             >
-              <span> {item}</span>
+              <span> {item.name}</span>
               <ion-icon name="checkmark-outline"></ion-icon>
             </li>
           ))}

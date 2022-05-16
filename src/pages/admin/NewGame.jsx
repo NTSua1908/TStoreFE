@@ -4,7 +4,10 @@ import Editor from "../../components/editor/Editor";
 import Input from "../../components/input/Input";
 import Navbar from "../../components/navbar_admin/Navbar";
 import Siderbar from "../../components/siderbar/Siderbar";
-import SliderGameDetail from "../../components/slider/SliderGamedetail/SliderGameDetail";
+import FlatformService from "../../services/FlatformService";
+import GameService from "../../services/GameService";
+import GameTypeService from "../../services/GameTypeService";
+import ProviderService from "../../services/ProviderService";
 import "./newgame.scss";
 
 const user = {
@@ -12,47 +15,64 @@ const user = {
   avatar: "https://demoda.vn/wp-content/uploads/2022/03/avatar-nam.jpg",
 };
 
-const types = [
-  "Hành động",
-  "Indie",
-  "RPG",
-  "Chiến lược",
-  "Sống sót",
-  "Rogue-Lite",
-  "Cuộc phiêu lưu",
-  "Mở rộng thế giới",
-  "Người bắn súng",
-  "Ghép hình",
-  "Ngôi thứ nhất",
-  "Tường thuật",
-  "Mô phỏng",
-  "Bình thường",
-  "Theo lượt",
-  "Thăm dò",
-  "Kinh dị",
-  "Người khai thác",
-  "Buổi tiệc",
-  "Thông tin bên lề",
-  "Người xây dựng thành phố",
-  "Tàng hình",
-  "Trận đánh",
-  "Phim hài",
-  "Phiêu lưu hành động",
-  "Cuộc đua",
-  "Chơi bài",
-  "Các môn thể thao",
-  "Dungeon Crawler",
-];
+// const types = [
+//   "Hành động",
+//   "Indie",
+//   "RPG",
+//   "Chiến lược",
+//   "Sống sót",
+//   "Rogue-Lite",
+//   "Cuộc phiêu lưu",
+//   "Mở rộng thế giới",
+//   "Người bắn súng",
+//   "Ghép hình",
+//   "Ngôi thứ nhất",
+//   "Tường thuật",
+//   "Mô phỏng",
+//   "Bình thường",
+//   "Theo lượt",
+//   "Thăm dò",
+//   "Kinh dị",
+//   "Người khai thác",
+//   "Buổi tiệc",
+//   "Thông tin bên lề",
+//   "Người xây dựng thành phố",
+//   "Tàng hình",
+//   "Trận đánh",
+//   "Phim hài",
+//   "Phiêu lưu hành động",
+//   "Cuộc đua",
+//   "Chơi bài",
+//   "Các môn thể thao",
+//   "Dungeon Crawler",
+// ];
 
-const flatfroms = [
-  "PlayStation 4",
-  "Xbox Series X",
-  "Series S",
-  "Xbox One",
-  "PlayStation 5",
-];
+// const flatfroms = [
+//   "PlayStation 4",
+//   "Xbox Series X",
+//   "Series S",
+//   "Xbox One",
+//   "PlayStation 5",
+// ];
 
 function NewGame(props) {
+  const [providers, setProviders] = useState([]);
+  const [types, setTypes] = useState([]);
+  const [flatforms, setFlatforms] = useState([]);
+
+  useEffect(() => {
+    ProviderService.getProviders().then((res) => {
+      setProviders(res.data);
+    });
+    GameTypeService.getGameTypes().then((res) => {
+      setTypes(res.data);
+    });
+    FlatformService.getFlatforms().then((res) => {
+      setFlatforms(res.data);
+    });
+    // console.log("new game");
+  }, []);
+
   const [content, setContent] = useState("");
   const [name, setName] = useState("");
   const [developer, setDeveloper] = useState("");
@@ -60,19 +80,20 @@ function NewGame(props) {
   const [provider, setProvider] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [releaseDate, setReleaseDate] = useState("");
-  const [flatfrom, setFlatfrom] = useState([]);
+  const [releaseDate, setReleaseDate] = useState(new Date());
+  const [flatform, setFlatform] = useState("");
   const [type, setType] = useState([]);
   const [discount, setDiscount] = useState("");
-  const [expirationDate, setExpirationDate] = useState("");
-  const [positiveReview, setPositiveReview] = useState();
-  const [negativeReview, setNegativeReview] = useState();
-  const [overallReview, setOverallReview] = useState();
+  const [expirationDate, setExpirationDate] = useState(new Date());
+  const [positiveReview, setPositiveReview] = useState("");
+  const [negativeReview, setNegativeReview] = useState("");
+  const [overallReview, setOverallReview] = useState("");
   const [image, setImage] = useState([]);
-  const [listImages, setListImage] = useState([]);
-  const [thumbnailHorizontal, setThumbnailHorizontal] = useState();
-  const [thumbnailVertical, setThumbnailVertical] = useState();
-  const [banner, setBanner] = useState();
+  const [images, setImages] = useState([]);
+  const [thumbnailHorizontal, setThumbnailHorizontal] = useState("");
+  const [thumbnailVertical, setThumbnailVertical] = useState("");
+  const [trailer, setTrailer] = useState("");
+  const [banner, setBanner] = useState("");
 
   const containerRef = useRef();
   const sliderRef = useRef();
@@ -82,6 +103,10 @@ function NewGame(props) {
     sliderRef.current.active();
     console.log("Active");
   };
+
+  useEffect(() => {
+    console.log(provider);
+  }, [provider]);
 
   return (
     <div className="newgame">
@@ -108,6 +133,7 @@ function NewGame(props) {
                   inWhite
                   small
                 />
+
                 <Input
                   placeholder="Nhà phát hành"
                   value={publisher}
@@ -115,12 +141,14 @@ function NewGame(props) {
                   inWhite
                   small
                 />
-                <Input
-                  placeholder="Nhà cung cấp"
-                  value={provider}
-                  onChange={setProvider}
+                <DropdownList
+                  title="Nhà cung cấp"
+                  item={providers}
+                  name="Provider"
                   inWhite
-                  small
+                  selected={provider}
+                  setSelected={setProvider}
+                  one
                 />
               </div>
               <div className="border-center"></div>
@@ -166,11 +194,12 @@ function NewGame(props) {
 
                 <DropdownList
                   title="Nền tảng"
-                  item={flatfroms}
+                  item={flatforms}
                   name="Flatform"
                   inWhite
-                  selected={flatfrom}
-                  setSelected={setFlatfrom}
+                  selected={flatform}
+                  setSelected={setFlatform}
+                  one
                 />
               </div>
             </div>
@@ -196,6 +225,36 @@ function NewGame(props) {
               />
             </div>
 
+            <span className="newgame__input-title">Thông tin đánh giá</span>
+            <div className="newgame__input-wrapper">
+              <Input
+                placeholder="Đánh giá tích cực"
+                value={positiveReview}
+                onChange={setPositiveReview}
+                inWhite
+                small
+                isNumber
+              />
+              <div className="block-center"></div>
+              <Input
+                placeholder="Đánh giá tiêu cực"
+                value={negativeReview}
+                onChange={setNegativeReview}
+                inWhite
+                small
+                isNumber
+              />
+              <div className="block-center"></div>
+              <Input
+                placeholder="Đánh giá tổng thể"
+                value={overallReview}
+                onChange={setOverallReview}
+                inWhite
+                small
+                isNumber
+              />
+            </div>
+
             <span className="newgame__input-title">Hình ảnh game</span>
 
             <div className="newgame__input-wrapper">
@@ -206,7 +265,7 @@ function NewGame(props) {
                 inWhite
                 small
               />
-              <div className="block-center"></div>
+              {banner && <div className="block-center"></div>}
 
               <img className="newgame__input-imageReview" src={banner} alt="" />
             </div>
@@ -218,7 +277,7 @@ function NewGame(props) {
                 inWhite
                 small
               />
-              <div className="block-center"></div>
+              {thumbnailHorizontal && <div className="block-center"></div>}
 
               <img
                 className="newgame__input-imageReview"
@@ -234,13 +293,34 @@ function NewGame(props) {
                 inWhite
                 small
               />
-              <div className="block-center"></div>
+              {thumbnailVertical && <div className="block-center"></div>}
 
               <img
                 className="newgame__input-imageReview"
                 src={thumbnailVertical}
                 alt=""
               />
+            </div>
+            <div className="newgame__input-wrapper">
+              <Input
+                placeholder="Link trailer"
+                value={trailer}
+                onChange={setTrailer}
+                inWhite
+                small
+              />
+              {trailer && (
+                <>
+                  <div className="block-center"></div>
+                  <iframe
+                    className="newgame__input-imageReview"
+                    src={trailer}
+                    allowfullscreen
+                    frameborder="0"
+                    alt=""
+                  />{" "}
+                </>
+              )}
             </div>
             <div className="newgame__input-wrapper">
               <Input
@@ -255,21 +335,21 @@ function NewGame(props) {
               <button
                 className="newgame__button"
                 onClick={() => {
-                  setListImage([...listImages, { img: image }]);
+                  setImages([...images, image]);
                 }}
               >
                 Thêm
               </button>
             </div>
             <div className="newgame__gridImage">
-              {listImages.map((item, index) => (
+              {images.map((item, index) => (
                 <div className="newgame__gridImage-container" key={index}>
-                  <img src={item.img} alt="" />
+                  <img src={item} alt="" />
                   <div
                     className="newgame__gridImage-container-close"
                     title="Xóa"
                     onClick={() => {
-                      setListImage(listImages.filter((i) => i != item));
+                      setImages(images.filter((i) => i != item));
                     }}
                   >
                     <ion-icon name="close-circle-outline"></ion-icon>
@@ -287,9 +367,39 @@ function NewGame(props) {
           <div style={{ marginTop: "10px" }}>
             <button
               className="newgame__button"
-              // style={{ margin: "0 auto" }}
               onClick={() => {
-                //setListImage([...listImages, { img: image }]);
+                let game = {
+                  name,
+                  thumbnailHorizontal,
+                  thumbnailVertical,
+                  trailer,
+                  banner,
+                  images,
+                  price,
+                  quantity,
+                  discount,
+                  developer,
+                  publisher,
+                  providerId: provider,
+                  releaseDate, //: "2022-5-12",
+                  flatformId: flatform,
+                  type,
+                  expirationDate, //: "2022-5-12",
+                  positiveReview, //: "1",
+                  negativeReview, //: "2",
+                  overallReview, //: "3",
+                  description: "",
+                  content, //: "content ne",
+                };
+                console.log(JSON.stringify(game));
+                GameService.createGame(game);
+
+                // images.forEach(item => {
+                //   var image = {
+                //     image: item,
+                //     gameId:
+                //   }
+                // });
               }}
             >
               Thêm đĩa
@@ -298,7 +408,7 @@ function NewGame(props) {
         </div>
 
         {/* {console.log(typeof data)} */}
-        {<div dangerouslySetInnerHTML={{ __html: content }}></div>}
+        {/* {<div dangerouslySetInnerHTML={{ __html: content }}></div>} */}
       </div>
     </div>
   );
