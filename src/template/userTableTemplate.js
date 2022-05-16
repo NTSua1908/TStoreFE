@@ -7,12 +7,12 @@ export const userColumns = [
   {
     field: "user",
     headerName: "Tên người dùng",
-    width: 230,
+    width: 360,
     renderCell: (params) => {
       return (
         <div className="user__datatable-cellWithImg">
-          <img className="cellImg" src={params.row.img} alt="avatar" />
-          {params.row.username}
+          <img className="cellImg" src={params.row.avatar} alt="avatar" />
+          {params.row.name}
         </div>
       );
     },
@@ -20,13 +20,7 @@ export const userColumns = [
   {
     field: "email",
     headerName: "Email",
-    width: 230,
-  },
-
-  {
-    field: "phone",
-    headerName: "Số điện thoại",
-    width: 180,
+    width: 280,
   },
   {
     field: "type",
@@ -36,10 +30,10 @@ export const userColumns = [
       return (
         <div
           className={`user__datatable-cellWithType ${
-            params.row.type === "Người dùng" ? "user" : "admin"
+            params.row.userType.name === "Người dùng" ? "user" : "admin"
           }`}
         >
-          {params.row.type}
+          {params.row.userType.name}
         </div>
       );
     },

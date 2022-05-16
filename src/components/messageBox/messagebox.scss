@@ -1,0 +1,90 @@
+@import "../../scss/variables";
+.messagebox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($color: #000000, $alpha: 0.1);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  color: #333;
+  &.active {
+    display: flex;
+  }
+  &__container {
+    display: flex;
+    height: 220px;
+    width: 500px;
+    background-color: rgb(243, 243, 243);
+    border-radius: 10px;
+    padding: 40px 40px 40px 30px;
+    border: 1px solid rgb(184, 184, 184);
+  }
+
+  &__icon {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding-right: 20px;
+    ion-icon {
+      pointer-events: none;
+      font-size: 80px;
+    }
+    &.ok {
+      ion-icon {
+        color: green;
+      }
+    }
+    &.yesno {
+      ion-icon {
+        color: blue;
+      }
+    }
+    &.error {
+      ion-icon {
+        color: red;
+      }
+    }
+  }
+  &__info {
+    flex: 4;
+    &-title {
+      font-weight: 600;
+      line-height: 50px;
+      font-size: 22px;
+    }
+    &-content {
+      font-size: 18px;
+    }
+  }
+
+  &__button {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding: 0 10px;
+    &.ok {
+      justify-content: center;
+    }
+    button {
+      padding: 12px 25px;
+      border-radius: 8px;
+      background-color: $blue-color;
+      color: #fff;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      display: block;
+      &.ok,
+      &.no {
+        background-color: green;
+      }
+      &.yes {
+        background-color: $blue-color;
+      }
+    }
+  }
+}

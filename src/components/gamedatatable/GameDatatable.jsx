@@ -1,44 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { gameColumns } from "../../template/gameTableTemplate";
 import "./gamedatatable.scss";
+import GameService from "../../services/GameService";
 
-const games = [
-  {
-    id: 1,
-    name: "Far cry 6",
-    publisher: "Ubisoft",
-    supplier: "HaDoan Tv",
-    price: "800.000",
-    quantity: "110",
-    type: "Hành động, bắn súng, góc nhìn thứ nhất",
-    date: "1/1/2014",
-  },
-  {
-    id: 2,
-    name: "Far cry 6",
-    publisher: "Ubisoft",
-    supplier: "HaDoan Tv",
-    price: "800.000",
-    quantity: "110",
-    type: "Hành động, bắn súng, góc nhìn thứ nhất",
-    date: "1/1/2014",
-  },
-  {
-    id: 3,
-    name: "Far cry 6",
-    publisher: "Ubisoft",
-    supplier: "HaDoan Tv",
-    price: "800.000",
-    quantity: "110",
-    type: "Hành động, bắn súng, góc nhìn thứ nhất",
-    date: "1/1/2014",
-  },
-];
+// const games = [
+//   {
+//     id: 1,
+//     name: "Far cry 6",
+//     publisher: "Ubisoft",
+//     supplier: "HaDoan Tv",
+//     price: "800.000",
+//     quantity: "110",
+//     type: "Hành động, bắn súng, góc nhìn thứ nhất",
+//     date: "1/1/2014",
+//   },
+//   {
+//     id: 2,
+//     name: "Far cry 6",
+//     publisher: "Ubisoft",
+//     supplier: "HaDoan Tv",
+//     price: "800.000",
+//     quantity: "110",
+//     type: "Hành động, bắn súng, góc nhìn thứ nhất",
+//     date: "1/1/2014",
+//   },
+//   {
+//     id: 3,
+//     name: "Far cry 6",
+//     publisher: "Ubisoft",
+//     supplier: "HaDoan Tv",
+//     price: "800.000",
+//     quantity: "110",
+//     type: "Hành động, bắn súng, góc nhìn thứ nhất",
+//     date: "1/1/2014",
+//   },
+// ];
 
 function GameDatatable(props) {
-  const [data, setData] = useState(games);
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    GameService.getGames().then((res) => {
+      setData(res.data);
+    });
+    console.log(data);
+  }, []);
 
   const handleDelete = (type, id) => {
     setData(data.filter((item) => item.id !== id));
