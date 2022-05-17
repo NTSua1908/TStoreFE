@@ -65,11 +65,7 @@ function Input(props) {
 
   return (
     <div
-<<<<<<< HEAD
       className={`input ${props.inWhite && "white"} ${props.small && "small"} ${props.disabled && "disabled"} `}
-=======
-      className={`input ${props.inWhite && "white"} ${props.small && "small"}`}
->>>>>>> 198f1ba16aa5bfa3acf48c6d0cf3888be76a7416
     >
       <input
         ref={inputRef}
