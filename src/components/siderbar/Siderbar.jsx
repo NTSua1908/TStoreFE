@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef } from "react";
+import React, { forwardRef, useImperativeHandle, useRef, memo } from "react";
 import { Link } from "react-router-dom";
 import logoPNG from "../../assets/logo.png";
 import "./siderbar.scss";
@@ -13,6 +13,8 @@ function Siderbar(props, ref) {
       logoRef.current.classList.toggle("active");
     },
   }));
+
+  // console.log("rerender sider");
 
   return (
     <div className="sidebar" ref={sliderRef}>
@@ -45,20 +47,32 @@ function Siderbar(props, ref) {
               <span>Người dùng</span>
             </li>
           </Link>
-          <Link to="/admin/products" style={{ textDecoration: "none" }}>
+          <Link
+            to="/admin/products"
+            style={{ textDecoration: "none" }}
+            className={props.active == 3 && "active"}
+          >
             <li>
               <ion-icon name="file-tray-outline"></ion-icon>
               <span>Sản phẩm</span>
             </li>
           </Link>
-          <Link to="/admin/orders" style={{ textDecoration: "none" }}>
+          <Link
+            to="/admin/orders"
+            style={{ textDecoration: "none" }}
+            className={props.active == 4 && "active"}
+          >
             <li>
               <ion-icon name="archive-outline"></ion-icon>
               <span>Đơn hàng</span>
             </li>
           </Link>
 
-          <Link to="/admin/delivery" style={{ textDecoration: "none" }}>
+          <Link
+            to="/admin/delivery"
+            style={{ textDecoration: "none" }}
+            className={props.active == 5 && "active"}
+          >
             <li>
               <ion-icon name="bus-outline"></ion-icon>
               <span>Vận chuyển</span>
@@ -83,4 +97,4 @@ function Siderbar(props, ref) {
   );
 }
 
-export default forwardRef(Siderbar);
+export default memo(forwardRef(Siderbar));

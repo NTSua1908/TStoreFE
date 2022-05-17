@@ -1,3 +1,5 @@
+import { spacing } from "@mui/system";
+
 export const gameColumns = [
   {
     field: "id",
@@ -16,14 +18,17 @@ export const gameColumns = [
   },
 
   {
-    field: "supplier",
+    field: "provider",
     headerName: "Nhà cung cấp",
     width: 180,
+    renderCell: (params) => {
+      return <div>{params.row.provider.name}</div>;
+    },
   },
   {
     field: "price",
     headerName: "Giá",
-    width: 180,
+    width: 100,
   },
   {
     field: "quantity",
@@ -33,10 +38,22 @@ export const gameColumns = [
   {
     field: "type",
     headerName: "Thể loại",
-    width: 250,
+    width: 300,
+    renderCell: (params) => {
+      return (
+        <div>
+          {params.row.types.map((item, index) => (
+            <span key={index}>
+              <span>{item.name}</span>
+              {index != params.row.types.length - 1 && <span>{",  "}</span>}
+            </span>
+          ))}
+        </div>
+      );
+    },
   },
   {
-    field: "date",
+    field: "releaseDate",
     headerName: "Ngày phát hành ",
     width: 180,
   },
