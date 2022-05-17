@@ -3,7 +3,7 @@
 
 .input {
   position: relative;
-  margin: 20px 0;
+  margin: 16px 0;
   input {
     height: 70px;
     outline: none;
@@ -25,7 +25,7 @@
     &:focus,
     &.empty:focus {
       border-color: #0074e4 !important;
-      border-width: 2px;
+      border-width: 3px;
     }
 
     &:focus + label,
@@ -33,7 +33,7 @@
       top: 0;
       padding: 0 10px;
       left: 11px;
-      font-size: 0.8vw;
+      font-size: 0.9vw;
       color: #fff;
       @include tablet {
         font-size: 1.6vw;
@@ -53,6 +53,7 @@
     background-color: $background-color;
     transition: 0.3s ease;
     user-select: none;
+    pointer-events: none;
     @include tablet {
       font-size: 2vw;
     }
@@ -86,12 +87,12 @@
 
   &.white {
     input {
-      border: 1px solid rgb(27, 27, 27);
+      border: 1px solid rgb(84, 84, 84);
       color: #333;
 
       &:focus,
       &.empty:focus {
-        border-color: #000 !important;
+        border-color: rgb(0, 8, 255) !important;
         border-width: 2px;
       }
 
@@ -102,7 +103,33 @@
     }
     label {
       color: #333;
-      background-color: aliceblue;
+      background-color: #fff;
     }
   }
+  &.white.small {
+    margin: 12px 0;
+    input {
+      height: 55px;
+      border: 1px solid rgb(84, 84, 84);
+      color: #333;
+
+      &:focus,
+      &.empty:focus {
+        border-color: rgb(0, 8, 255) !important;
+        border-width: 2px;
+      }
+
+      &:focus + label,
+      &:not(:placeholder-shown) + label {
+        color: #333;
+        font-size: 12px;
+      }
+    }
+    label {
+      color: #333;
+      background-color: #fff;
+      font-size: 17px;
+    }
+  }
+
 }

@@ -1,8 +1,13 @@
 @use "../../scss/breakpoint" as *;
 @import "../../scss/variables";
 
+* {
+  font-family: Brutal, sans-serif;
+}
+
 .addresscard {
-  background-color: #16181d;
+  background-color: rgb(255, 199, 96);
+  color: #202428;
   border-radius: 10px;
   display: flex;
   box-shadow: 1px 1px 3px rgba($color: #fff, $alpha: 0.2);
@@ -27,8 +32,16 @@
       }
     }
   }
+
+  &__headding {
+    height: 20px;
+    background-color: aqua;
+  }
+
   &__information {
     flex: 1;
+
+    &-name,
     &-location,
     &-description,
     &-phone {
@@ -58,16 +71,56 @@
         font-size: 1.3vw;
       }
     }
+
+    &-button {
+      background-color: rgb(98, 100, 85);
+      margin-top: 5px;
+      border-radius: 4px;
+      border-style: none;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      font-family: "Farfetch Basis", "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.5;
+      margin: 0;
+      max-width: none;
+      min-height: 44px;
+      min-width: 10px;
+      outline: none;
+      overflow: hidden;
+      padding: 9px 20px 8px;
+      position: relative;
+      text-align: center;
+      text-transform: none;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
   }
   &__option {
+    display: flex;
     position: relative;
     cursor: pointer;
     ion-icon {
+      color: #202428;
+      width: 20px;
+      height: 20px;
+      margin-left: 10px;
       pointer-events: none;
+
       @include mobile {
         font-size: 4vw;
       }
     }
+
+    link {
+      &:visited {
+        color: #8f98a0;
+      }
+    }
+
     &:hover &-list {
       display: block;
     }

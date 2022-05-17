@@ -165,12 +165,9 @@
   &__wrapper {
     flex: 2;
     height: 100%;
-<<<<<<< HEAD
-=======
     @include tablet {
       display: none;
     }
->>>>>>> 7717cc95ab2afc9ec49fd9c00f9bc9aada568d72
   }
 
   &__img--small {
@@ -179,6 +176,8 @@
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 10px;
+    opacity: 1;
+
   }
 
   &__slider {
@@ -186,6 +185,8 @@
     height: 100%;
     width: 100%;
     position: relative;
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+
 
     &::after {
       position: absolute;
@@ -208,6 +209,22 @@
       right: 0;
       height: 20px;
       background: linear-gradient(to top, $background-color, transparent);
+    }
+
+    .swiper-slide {
+      opacity: 0.4;
+    }
+
+    .swiper-slide-visible:hover{
+      opacity: 1;
+    }
+
+    .swiper-slide-thumb-active {
+      opacity: 1;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      overflow: hidden;
+
     }
   }
 }

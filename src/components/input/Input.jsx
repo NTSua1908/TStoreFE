@@ -1,10 +1,15 @@
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import "./input.scss";
 
 function Input(props) {
   const [isShow, setShow] = useState(false);
 
   const inputRef = useRef();
+
+  useEffect(()=>{
+    if (props.disabled)
+      inputRef.current.disabled = true
+  }, [])
 
   const isEmail = (value) => {
     var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -14,6 +19,8 @@ function Input(props) {
     var regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
     return regex.test(value);
   };
+
+  // console.log("rerender");
 
   const handleInput = (e) => {
     if (!props.filled) return;
@@ -52,11 +59,14 @@ function Input(props) {
     else if (props.isEmail) inputRef.current.type = "email";
     else if (props.isNumber) inputRef.current.type = "number";
     else if (props.isPhone) inputRef.current.type = "tel";
+    else if (props.isDate) inputRef.current.type = "date";
     // console.log(inputRef.current.type);
   }, []);
 
   return (
-    <div className={`input ${props.inWhite && "white"}`}>
+    <div
+      className={`input ${props.inWhite && "white"} ${props.small && "small"} ${props.disabled && "disabled"} `}
+    >
       <input
         ref={inputRef}
         type="text"
@@ -88,7 +98,7 @@ function Input(props) {
           // console.log("blur ", !isInvalid);
         }}
       />
-      <label>
+      <label for="name">
         {props.placeholder}
         {props.required && " *"}
       </label>
@@ -108,4 +118,4 @@ function Input(props) {
   );
 }
 
-export default Input;
+export default memo(Input);

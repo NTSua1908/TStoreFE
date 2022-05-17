@@ -1,0 +1,235 @@
+@import '../../scss/variables';
+
+*{
+    font-family: Brutal,sans-serif;
+}
+
+.UserInfor{
+    margin-top: $header-height;
+    padding-left: $padding;
+    padding-right: $padding;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(28, 28, 28);
+
+    &__title{
+        display: table;
+        margin: 0 auto;
+
+        position: relative;
+        font-size: 25px;
+        font-weight: 700;
+        line-height: initial;
+        padding:40px 0 30px;
+
+        &::after{
+            content: "";
+            background: #fff;
+            display: block;
+            width: 60px;
+            height: 4px;
+            margin: 20px auto;
+        }
+    }
+
+    &__wrapper{
+        display: flex;
+
+        &__Menu{
+            flex: 3;
+            position: relative;
+
+            &__accountsidebar{
+                margin-bottom: 30px;
+            }
+
+            &__accounttitle{
+                text-transform: uppercase;
+                margin-bottom: 10px;
+                font-size: 15px;
+                font-weight: 700;
+                letter-spacing: 1px;
+                position: relative;
+            }
+
+            &__accountcontent{
+
+                &__list{
+                    list-style: none;
+
+                    a{
+                        font-size: 14px;
+                        display: block;
+                        position: relative;
+                        padding: 5px 0px;
+                        color: #fff;
+                        text-decoration: none;
+                        outline: none;
+
+                        ion-icon {
+                            line-height: 35px;
+                            position: relative;
+                            top: 1px;
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__Information{
+            flex:7;
+            position: relative;
+
+            h3{
+                text-transform: uppercase;
+                font-size: 15px;
+                font-weight: 700;
+                letter-spacing: 1px;
+                position: relative;
+                border-bottom: 1px solid #ededed;
+                padding-bottom: 8px;
+                margin-bottom: 20px;
+            }
+
+            &__email{
+                margin-bottom: 20px;
+            }
+
+            &__surname{
+                margin-bottom: 20px;
+            }
+
+            &__name{
+                margin-bottom: 20px;
+            }
+
+            &__gender{
+                display: flex;
+                margin-bottom: 20px;
+                align-items: center;
+
+                ul{
+                    display: flex;
+                    list-style-type: none;
+                    align-items: center;
+                }
+
+                li{
+                    display: block;
+                    margin-right: 20px;
+                }
+
+
+                input[type="radio"]{
+                    display: none;
+
+                    & + label{
+                        position: relative;
+                        cursor: pointer;
+                        padding-left: 28px;
+                        margin: 0 20px 0 0;    
+                    }
+
+                    &:checked + label::before{
+                        box-shadow: inset 0 0 0 4px #efefef;
+                    }
+
+                    & + label::before{
+                        content: "";
+                        position: absolute;
+                        border-radius: 50%;
+                        transition: all 0.3s ease;
+                        top: 0;
+                        left: 0;
+                        width: 18px;
+                        height: 18px;
+                        background: #323232;
+                        box-shadow: inset 0 0 0 18px #efefef;
+                    }
+
+                    &:checked + label::after{
+                        transform: translate(-50%, -50%) scale(1);
+                        animation: ripple 1s none;
+                    }
+
+                    & + label::after{
+                        content: "";
+                        position: absolute;
+                        border-radius: 50%;
+                        transition: all 0.3s ease;
+                        top: 49%;
+                        left: 9px;
+                        width: 54px;
+                        height: 54px;
+                        opacity: 0;
+                        background: rgba(255, 255, 255, 0.3);
+                        transform: translate(-50%, -50%) scale(0);
+                    }
+                }
+
+            }
+
+            &__birthday{
+                display: block;
+            }
+
+            &__label{
+                display: block;
+                color: #fff !important;
+                text-align: left;
+                font-size: 14px;
+                padding-left: 0px !important;
+                margin-bottom: 0px !important;
+                font-weight: initial;
+                width: 120px;
+                float: left;
+                line-height: 38px;
+
+            }
+
+            input[type="text"], input[type="date"]{
+                width: 40%;
+                height: 45px;
+                border: 1px solid transparent;
+                background: #ededed;
+                color: #221e20;
+                padding: 0 20px;
+                font-weight: 500;
+            }
+
+            &__confirm{
+                align-items: center;
+                background-color: #EA4C89;
+                border-radius: 8px;
+                border-style: none;
+                box-sizing: border-box;
+                color: #FFFFFF;
+                cursor: pointer;
+                display: inline-block;
+                font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                height: 40px;
+                line-height: 20px;
+                list-style: none;
+                margin: 0;
+                outline: none;
+                padding: 10px 16px;
+                position: relative;
+                text-align: center;
+                text-decoration: none;
+                transition: color 100ms;
+                vertical-align: baseline;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+
+                &:hover,&:focus {
+                background-color: #F082AC;
+                }
+            }       
+        }
+    }
+
+}

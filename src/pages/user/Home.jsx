@@ -144,9 +144,18 @@ function Home(props) {
   return (
     <div className="home">
       <Header />
-      <Slider />
+
+      <div className="home__banner"></div>
+
       <div className="home__wrapper">
         <Search />
+        <div className="home__title">
+          <span>Game tiêu biểu nên xem</span>
+        </div>
+        <div className="home__mainslider">
+          <Slider className="home__mainslider" />
+        </div>
+
         <Link className="home__title" to="/popular">
           <span>
             Top game thịnh hành
@@ -155,6 +164,15 @@ function Home(props) {
         </Link>
         <GameList item={gameItems} />
         {/* <Logo3D /> */}
+
+        <Link className="home__title" to="/discount">
+          <span>
+            Game mới cập nhật
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </span>
+        </Link>
+        <SliderNewGame></SliderNewGame>
+
         <Link className="home__title" to="/discount">
           <span>
             Top game giảm giá
@@ -162,13 +180,6 @@ function Home(props) {
           </span>
         </Link>
         <GameList item={gameItems} />
-        <Link className="home__title" to="/discount">
-          <span>
-            Game mới cập nhật
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-          </span>
-        </Link>
-        <SliderNewGame />
       </div>
       <Footer></Footer>
       <HomePopUp />
