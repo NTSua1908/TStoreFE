@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SliderGameDetail from "../../components/slider/SliderGamedetail/SliderGameDetail";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
@@ -11,6 +11,8 @@ import {
 
 import "react-circular-progressbar/dist/styles.css";
 import "./gamedetail.scss";
+import GameService from "../../services/GameService";
+import { useParams } from "react-router-dom";
 const percentage = 66;
 const gameItems = [
   {
@@ -58,6 +60,45 @@ const gameItems = [
 ];
 
 function Gamedetail(props) {
+  const [game, setGame] = useState({
+    id: "",
+    name: "",
+    images: [],
+    thumbnailHorizontal: "",
+    thumbnailVertical: "",
+    trailer: "",
+    banner: "",
+    price: 0,
+    quantity: 0,
+    discount: 0,
+    developer: "",
+    publisher: "",
+    provider: {
+      name: "",
+    },
+    releaseDate: "",
+    types: [],
+    expirationDate: "",
+    positiveReview: "",
+    negativeReview: "",
+    overallReview: "",
+    description: "",
+    content: "",
+    flatform: {
+      name: " ",
+    },
+  });
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    GameService.getGameById(id)
+      .then((res) => {
+        setGame(res.data);
+      })
+      .catch((error) => {});
+  }, []);
+
   return (
     <div className="gamedetail">
       <Header />
@@ -72,27 +113,23 @@ function Gamedetail(props) {
               Thể loại: Hành động{" "}
             </a>
             <ion-icon name="chevron-forward-outline"></ion-icon>
-            <span className="">Elden Ring</span>
+            <span className="">{game.name}</span>
           </div>
-          <span className="gamedetail__title__gamename">Elden ring</span>
+          <span className="gamedetail__title__gamename">{game.name}</span>
         </div>
 
         <div className="gamedetail__introduction">
           {/* slider */}
           <div className="gamedetail__introduction__swipersection">
-            <SliderGameDetail items={gameItems} />
+            <SliderGameDetail items={game.images} />
 
             {/* description */}
             <div className="gamedetail__introduction__swipersection__beginning">
-              Elden Ring cho PS4 có bán ở TStore là một siêu phẩm mới đến từ
-              FromSoftware, nơi đã tạo nên dòng game Souls vô cùng nổi tiếng.
-              Trò chơi sở hữu tính thử thách không thua gì những tiền bối Dark
-              Souls trước đây của mình. Bên cạnh đó, bạn sẽ được chìm đắm vào
-              một thế giới kỳ ảo vô cùng hung bạo, đáng sợ, nhưng cũng quyến rũ
-              khó cưỡng.
+              {game.description}
             </div>
             <div className="gamedetail__introduction__swipersection__content">
-              <h3>Elden ring siêu khó nhưng hấp dẫn</h3>
+              <div dangerouslySetInnerHTML={{ __html: game.content }}></div>
+              {/*<h3>Elden ring siêu khó nhưng hấp dẫn</h3>
               <div className="gamedetail__introduction__swipersection__content__trailer">
                 <iframe
                   className="gamedetail__introduction__swipersection__content__trailer__videoclip"
@@ -138,7 +175,7 @@ function Gamedetail(props) {
                 giới. Lao thẳng vào trận chiến, hạ gục từng kẻ địch một cách lén
                 lút hay thậm chí là gọi đồng minh tới hỗ trợ. Rất nhiều lựa chọn
                 tùy theo ý bạn để thăm dò, chiến đấu theo cách bạn muốn.
-              </p>
+              </p> */}
             </div>
             {/* end-desciption */}
           </div>
@@ -149,7 +186,7 @@ function Gamedetail(props) {
             <div className="gamedetail__introduction__infor">
               <div className="gamedetail__introduction__infor__img">
                 <img
-                  src="https://picfiles.alphacoders.com/409/409317.png"
+                  src={game.banner} //"https://picfiles.alphacoders.com/409/409317.png"
                   alt=""
                 />
               </div>
@@ -158,21 +195,25 @@ function Gamedetail(props) {
                 <div className="gamedetail__introduction__infor__wrapper__pricecontainer">
                   <div className="gamedetail__introduction__infor__wrapper__pricecontainer__sale">
                     <span className="gamedetail__introduction__infor__wrapper__pricecontainer__sale__text">
-                      -75%
+                      -{game.discount}%
                     </span>
                   </div>
                   <div className="gamedetail__introduction__infor__wrapper__pricecontainer__price">
                     <div className="gamedetail__introduction__infor__wrapper__pricecontainer__price__oldprice">
-                      900.000đ
+                      {game.price.toLocaleString("en-US")}đ
                     </div>
                     <div className="gamedetail__introduction__infor__wrapper__pricecontainer__price__newprice">
-                      300.000đ
+                      {(
+                        game.price -
+                        (game.price * game.discount) / 100
+                      ).toLocaleString("en-US")}
+                      đ
                     </div>
                   </div>
                 </div>
 
                 <div className="gamedetail__introduction__infor__wrapper__dateofsale">
-                  Kết thúc giảm giá vào 14/4/2022 10:00 PM
+                  Kết thúc giảm giá vào ngày {game.expirationDate}
                 </div>
               </div>
 
@@ -214,26 +255,25 @@ function Gamedetail(props) {
                 <div className="gamedetail__introduction__infor__wrapper__productinfor__developer">
                   <span>Nhà phát triển</span>
                   <div className="gamedetail__introduction__infor__wrapper__productinfor__developer__name">
-                    FromSoftware Inc.
+                    {game.developer}
                   </div>
                 </div>
                 <div className="gamedetail__introduction__infor__wrapper__productinfor__publisher">
                   <span>Nhà phát hành</span>
                   <div className="gamedetail__introduction__infor__wrapper__productinfor__pulisher__name">
-                    Bandai Namco
+                    {game.publisher}
                   </div>
                 </div>
                 <div className="gamedetail__introduction__infor__wrapper__productinfor__releasedate">
                   <span>Ngày phát hành</span>
                   <div className="gamedetail__introduction__infor__wrapper__productinfor__releasedate__date">
-                    25 tháng 2, 2022
+                    {game.releaseDate}
                   </div>
                 </div>
                 <div className="gamedetail__introduction__infor__wrapper__productinfor__platform">
                   <span>Các nền tảng</span>
                   <div className="gamedetail__introduction__infor__wrapper__productinfor__platform__name">
-                    PlayStation 4, Xbox Series X và Series S, Xbox One,
-                    PlayStation 5
+                    {game.flatform.name}
                   </div>
                 </div>
 
@@ -254,9 +294,9 @@ function Gamedetail(props) {
           <div className="gamedetail__rating__chart">
             <div className="gamedetail__rating__chart__tichcuc">
               <CircularProgressbar
-                value={percentage}
+                value={game.positiveReview}
                 strokeWidth={5}
-                text={`${percentage}%`}
+                text={`${game.positiveReview}%`}
                 styles={buildStyles({
                   strokeLinecap: "butt",
                   textSize: "16px",
@@ -270,9 +310,9 @@ function Gamedetail(props) {
 
             <div className="gamedetail__rating__chart__tieucuc">
               <CircularProgressbar
-                value={85}
+                value={game.negativeReview}
                 strokeWidth={5}
-                text={`85%`}
+                text={game.negativeReview}
                 styles={buildStyles({
                   strokeLinecap: "butt",
                   textSize: "16px",
@@ -286,11 +326,11 @@ function Gamedetail(props) {
 
             <div className="gamedetail__rating__chart__tongquan">
               <CircularProgressbar
-                value={3.5}
+                value={game.overallReview}
                 minValue={1}
                 maxValue={5}
                 strokeWidth={5}
-                text={`3.5`}
+                text={game.overallReview}
                 styles={buildStyles({
                   strokeLinecap: "butt",
                   textSize: "16px",

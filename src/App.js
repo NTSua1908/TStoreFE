@@ -20,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/detail" element={<Gamedetail />} />
+        <Route path="/detail/:id" element={<Gamedetail />} />
         <Route path="*" element={<h1>Khong tim thay</h1>} />
         <Route path="/" element={<Home />} />
         <Route path="/discover" element={<Discover />} />
