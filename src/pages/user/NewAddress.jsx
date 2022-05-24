@@ -17,6 +17,8 @@ function NewAddress(props) {
   const [location, setLocation] = useState(state.location);
   const [description, setDescription] = useState(state.description);
   const [latlng, setLatLng] = useState("");
+  const [name,setName]=useState(state.name);
+  const [phone, setPhone] = useState(state.phone);
 
   useLayoutEffect(() => {
     console.log("l", lat);
@@ -31,8 +33,7 @@ function NewAddress(props) {
     <div className="newAdress">
       <div className="newAdress-wrapper">
         <div className="newAdress-title">
-          <ion-icon name="location-outline"></ion-icon>
-          <span>Chọn địa điểm giao hàng</span>
+          <span>{name!=null ? "Chỉnh sửa" : "Thêm"}</span>
           <div
             className="newAdress-title-close"
             title="Đóng"
@@ -50,10 +51,25 @@ function NewAddress(props) {
               <span>{latlng}</span>
             </div>
             <Input
+              placeholder="Họ và tên"
+              value={name}
+              onChange={setName}
+              inWhite
+              small
+            />
+            <Input
               placeholder="Mô tả địa điểm"
               value={description}
               onChange={setDescription}
               inWhite
+              small
+            />
+             <Input
+              placeholder="Số điện thoại"
+              value={phone}
+              onChange={setPhone}
+              inWhite
+              small
             />
             <button className="newAdress-info-confirm">Xác nhận</button>
             <button

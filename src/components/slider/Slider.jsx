@@ -3,6 +3,8 @@ import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectCo
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import './slider.scss'
+
 
 // Import Swiper styles
 import 'swiper/css';
@@ -40,9 +42,10 @@ export default () => {
 
   return ( <>
     <Swiper
-    modules={[Autoplay]}
+    modules={[Autoplay, Navigation]}
       grabCursor={true}
       spaceBetween={0}
+      navigation={true}
       slidesPerView={1}
       loop={true}
       autoplay={{delay: 5000}}

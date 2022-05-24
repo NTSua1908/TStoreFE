@@ -211,155 +211,180 @@ function Gamedetail(props) {
                     </div>
                   </div>
                 </div>
+              </div>
+              {/* end-infor game */}
+            </div>
+
+            {/* <div className="gamedetail__rating">
+              <span className="gamedetail__rating__title">Đánh giá</span>
+              <div className="gamedetail__rating__chart">
+                <div className="gamedetail__rating__chart__tichcuc">
+                  <CircularProgressbar 
+                  value={percentage} 
+                  strokeWidth={5}
+                  text={`${percentage}%`} 
+                  styles={buildStyles({
+                    strokeLinecap: "butt",
+                    textSize: '16px',
+                    textColor: '#fff',
+                    pathColor: `rgb(255, 199, 96)`,
+                    trailColor: `rgb(29, 29, 29)`,
+                  })}/>
+                  <span>Đánh giá tích cực</span>
+                </div>
 
                 <div className="gamedetail__introduction__infor__wrapper__dateofsale">
                   Kết thúc giảm giá vào ngày {game.expirationDate}
                 </div>
               </div>
+            </div> */}
 
-              <button className="gamedetail__introduction__infor__wrapper__buttonbuynow">
-                Mua ngay
+            <button className="gamedetail__introduction__infor__wrapper__buttonbuynow">
+              Mua ngay
+            </button>
+
+            <div className="gamedetail__introduction__infor__wrapper__addcartcontainer">
+              <div className="gamedetail__introduction__infor__wrapper__addcartcontainer__quantity">
+                <input
+                  type="button"
+                  value="-"
+                  class="gamedetail__introduction__infor__wrapper__addcartcontainer__quantity__minus"
+                />
+                <input
+                  type="text"
+                  step="1"
+                  min="1"
+                  name="quantity"
+                  value="1"
+                  title="Qty"
+                  class="gamedetail__introduction__infor__wrapper__addcartcontainer__quantity__text"
+                  size="4"
+                  pattern=""
+                  inputmode=""
+                />
+                <input
+                  type="button"
+                  value="+"
+                  class="gamedetail__introduction__infor__wrapper__addcartcontainer__quantity__plus"
+                />
+              </div>
+              <button className="gamedetail__introduction__infor__wrapper__addcartcontainer__buttonaddcart">
+                thêm vào giỏ hàng
               </button>
+            </div>
 
-              <div className="gamedetail__introduction__infor__wrapper__addcartcontainer">
-                <div className="gamedetail__introduction__infor__wrapper__addcartcontainer__quantity">
-                  <input
-                    type="button"
-                    value="-"
-                    class="gamedetail__introduction__infor__wrapper__addcartcontainer__quantity__minus"
-                  />
-                  <input
-                    type="text"
-                    step="1"
-                    min="1"
-                    name="quantity"
-                    value="1"
-                    title="Qty"
-                    class="gamedetail__introduction__infor__wrapper__addcartcontainer__quantity__text"
-                    size="4"
-                    pattern=""
-                    inputmode=""
-                  />
-                  <input
-                    type="button"
-                    value="+"
-                    class="gamedetail__introduction__infor__wrapper__addcartcontainer__quantity__plus"
-                  />
+            <div className="gamedetail__introduction__infor__wrapper__productinfor">
+              <div className="gamedetail__introduction__infor__wrapper__productinfor__developer">
+                <span>Nhà phát triển</span>
+                <div className="gamedetail__introduction__infor__wrapper__productinfor__developer__name">
+                  {game.developer}
                 </div>
-                <button className="gamedetail__introduction__infor__wrapper__addcartcontainer__buttonaddcart">
-                  thêm vào giỏ hàng
-                </button>
+              </div>
+              <div className="gamedetail__introduction__infor__wrapper__productinfor__publisher">
+                <span>Nhà phát hành</span>
+                <div className="gamedetail__introduction__infor__wrapper__productinfor__pulisher__name">
+                  {game.publisher}
+                </div>
+              </div>
+              <div className="gamedetail__introduction__infor__wrapper__productinfor__releasedate">
+                <span>Ngày phát hành</span>
+                <div className="gamedetail__introduction__infor__wrapper__productinfor__releasedate__date">
+                  {game.releaseDate}
+                </div>
+              </div>
+              <div className="gamedetail__introduction__infor__wrapper__productinfor__platform">
+                <span>Các nền tảng</span>
+                <div className="gamedetail__introduction__infor__wrapper__productinfor__platform__name">
+                  {game.flatform.name}
+                </div>
               </div>
 
-              <div className="gamedetail__introduction__infor__wrapper__productinfor">
-                <div className="gamedetail__introduction__infor__wrapper__productinfor__developer">
-                  <span>Nhà phát triển</span>
-                  <div className="gamedetail__introduction__infor__wrapper__productinfor__developer__name">
-                    {game.developer}
-                  </div>
-                </div>
-                <div className="gamedetail__introduction__infor__wrapper__productinfor__publisher">
-                  <span>Nhà phát hành</span>
-                  <div className="gamedetail__introduction__infor__wrapper__productinfor__pulisher__name">
-                    {game.publisher}
-                  </div>
-                </div>
-                <div className="gamedetail__introduction__infor__wrapper__productinfor__releasedate">
-                  <span>Ngày phát hành</span>
-                  <div className="gamedetail__introduction__infor__wrapper__productinfor__releasedate__date">
-                    {game.releaseDate}
-                  </div>
-                </div>
-                <div className="gamedetail__introduction__infor__wrapper__productinfor__platform">
-                  <span>Các nền tảng</span>
-                  <div className="gamedetail__introduction__infor__wrapper__productinfor__platform__name">
-                    {game.flatform.name}
-                  </div>
-                </div>
-
-                <div className="gamedetail__introduction__infor__wrapper__productinfor__gamemode">
-                  <span>Chế độ chơi</span>
-                  <div className="gamedetail__introduction__infor__wrapper__productinfor__gamemode__name">
-                    Một người chơi
-                  </div>
+              <div className="gamedetail__introduction__infor__wrapper__productinfor__gamemode">
+                <span>Chế độ chơi</span>
+                <div className="gamedetail__introduction__infor__wrapper__productinfor__gamemode__name">
+                  Một người chơi
                 </div>
               </div>
             </div>
           </div>
-          {/* end-infor game */}
         </div>
+        {/* end-infor game */}
+      </div>
 
-        <div className="gamedetail__rating">
-          <span className="gamedetail__rating__title">Đánh giá</span>
-          <div className="gamedetail__rating__chart">
-            <div className="gamedetail__rating__chart__tichcuc">
-              <CircularProgressbar
-                value={game.positiveReview}
-                strokeWidth={5}
-                text={`${game.positiveReview}%`}
-                styles={buildStyles({
-                  strokeLinecap: "butt",
-                  textSize: "16px",
-                  textColor: "#fff",
-                  pathColor: `rgb(255, 199, 96)`,
-                  trailColor: `rgb(29, 29, 29)`,
-                })}
-              />
-              <span>Đánh giá tích cực</span>
-            </div>
-
-            <div className="gamedetail__rating__chart__tieucuc">
-              <CircularProgressbar
-                value={game.negativeReview}
-                strokeWidth={5}
-                text={game.negativeReview}
-                styles={buildStyles({
-                  strokeLinecap: "butt",
-                  textSize: "16px",
-                  textColor: "#fff",
-                  pathColor: `rgb(255, 199, 96)`,
-                  trailColor: `rgb(29, 29, 29)`,
-                })}
-              />
-              <span>Đánh giá tiêu cực</span>
-            </div>
-
-            <div className="gamedetail__rating__chart__tongquan">
-              <CircularProgressbar
-                value={game.overallReview}
-                minValue={1}
-                maxValue={5}
-                strokeWidth={5}
-                text={game.overallReview}
-                styles={buildStyles({
-                  strokeLinecap: "butt",
-                  textSize: "16px",
-                  textColor: "#fff",
-                  pathColor: `rgb(255, 199, 96)`,
-                  trailColor: `rgb(29, 29, 29)`,
-                })}
-              />
-              <span>Tổng quan</span>
-            </div>
+      <div className="gamedetail__rating">
+        <span className="gamedetail__rating__title">Đánh giá</span>
+        <div className="gamedetail__rating__chart">
+          <div className="gamedetail__rating__chart__tichcuc">
+            <CircularProgressbar
+              value={game.positiveReview}
+              strokeWidth={5}
+              text={`${game.positiveReview}%`}
+              styles={buildStyles({
+                strokeLinecap: "butt",
+                textSize: "16px",
+                textColor: "#fff",
+                pathColor: `rgb(255, 199, 96)`,
+                trailColor: `rgb(29, 29, 29)`,
+              })}
+            />
+            <span>Đánh giá tích cực</span>
           </div>
-        </div>
 
-        <div className="gamedetail__gamelienquan">
-          <span className="gamedetail__gamelienquan__title">
-            Sản phẩm liên quan
-          </span>
-          <GameList
-            class="gamedetail__gamelienquan__gamelist"
-            item={gameItems}
-          />
-        </div>
+          <div className="gamedetail__rating__chart__tieucuc">
+            <CircularProgressbar
+              value={game.negativeReview}
+              strokeWidth={5}
+              text={game.negativeReview}
+              styles={buildStyles({
+                strokeLinecap: "butt",
+                textSize: "16px",
+                textColor: "#fff",
+                pathColor: `rgb(255, 199, 96)`,
+                trailColor: `rgb(29, 29, 29)`,
+              })}
+            />
+            <span>Đánh giá tiêu cực</span>
+          </div>
 
-        <div className="gamedetail__gamedaxem">
-          <span className="gamedetail__gamedaxem__title">Sản phẩm đã xem</span>
-          <GameList class="gamedetail__gamedaxem__gamelist" item={gameItems} />
-        </div>
+          <div className="gamedetail__rating__chart__tongquan">
+            <CircularProgressbar
+              value={game.overallReview}
+              minValue={1}
+              maxValue={5}
+              strokeWidth={5}
+              text={game.overallReview}
+              styles={buildStyles({
+                strokeLinecap: "butt",
+                textSize: "16px",
+                textColor: "#fff",
+                pathColor: `rgb(255, 199, 96)`,
+                trailColor: `rgb(29, 29, 29)`,
+              })}
+            />
+            <span>Tổng quan</span>
+          </div>
+          <div className="gamedetail__gamelienquan">
+            <span className="gamedetail__gamelienquan__title">
+              Sản phẩm liên quan
+            </span>
+            <GameList
+              class="gamedetail__gamelienquan__gamelist"
+              item={gameItems}
+            />
+          </div>
 
-        <Footer></Footer>
+          <div className="gamedetail__gamedaxem">
+            <span className="gamedetail__gamedaxem__title">
+              Sản phẩm đã xem
+            </span>
+            <GameList
+              class="gamedetail__gamedaxem__gamelist"
+              item={gameItems}
+            />
+          </div>
+
+          <Footer></Footer>
+        </div>
       </div>
     </div>
   );

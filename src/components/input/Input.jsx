@@ -6,6 +6,10 @@ function Input(props) {
 
   const inputRef = useRef();
 
+  useEffect(() => {
+    if (props.disabled) inputRef.current.disabled = true;
+  }, []);
+
   const isEmail = (value) => {
     var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     return regex.test(value);
@@ -60,21 +64,25 @@ function Input(props) {
 
   return (
     <div
-      className={`input ${props.inWhite && "white"} ${props.small && "small"}`}
+      className={`input ${props.inWhite && "white"} ${props.small && "small"} ${
+        props.disabled && "disabled"
+      } `}
     >
       <input
         ref={inputRef}
         type="text"
-        value={props.value}
+        // value={props.value}
         placeholder=" "
         onChange={(e) => {
-          props.onChange(e.target.value);
+          props.filled && props.onChange(e.target.value);
         }}
         onInput={(e) => {
           handleInput(e);
         }}
         onFocus={(e) => handleInput(e)}
         onBlur={(e) => {
+          !props.filled && props.onChange(e.target.value);
+          // console.log(props.value);
           if (!props.filled) return;
 
           var isInvalid = false;

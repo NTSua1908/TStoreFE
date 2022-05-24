@@ -1,0 +1,37 @@
+@use "../../scss/breakpoint" as *;
+@import "../../scss/variables";
+
+.Congratulation_notice {
+  width: 100%;
+  height: 100%;
+  .Canvas {
+    width: 120%;
+    height: auto;
+  }
+  &-container {
+    flex-direction: column;
+    color: $background-color;
+    background: $main-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+    ion-icon {
+      color: #eeeeee;
+      font-size: 80px;
+      margin-top: 50px;
+    }
+
+    &-thankyou {
+      margin-top: 30px;
+      font-size: 20px;
+    }
+
+    &-notice {
+      font-size: 20px;
+      padding-bottom: 20px;
+    }
+  }
+}
