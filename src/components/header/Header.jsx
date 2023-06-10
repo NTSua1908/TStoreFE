@@ -3,6 +3,7 @@ import logoPNG from "../../assets/logo.png";
 import "./header.scss";
 import { Link, useLocation } from "react-router-dom";
 import Button from "../button/Button";
+import { useSelector } from "react-redux";
 
 const headerNav = [
   {
@@ -29,8 +30,10 @@ function Header(props) {
 
   const headerRef = useRef();
   const timer = useRef(null);
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
+    console.log(user);
     const shrink = () => {
       if (
         document.body.scrollTop > 100 ||
@@ -92,7 +95,7 @@ function Header(props) {
                 </Link>
               </li>
             ))}
-            {props.isLogin && (
+            {!user && (
               <>
                 <li className="header__container__item header__islogin">
                   <a>Đăng nhập</a>
@@ -103,7 +106,7 @@ function Header(props) {
               </>
             )}
           </ul>
-          {props.isLogin ? (
+          {!user.name ? (
             <div className="header__user">
               <Button className="btn">
                 <Link to="/login">Đăng nhập</Link>

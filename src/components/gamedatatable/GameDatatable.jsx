@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { gameColumns } from "../../template/gameTableTemplate";
 import "./gamedatatable.scss";
+import MessageBox from "../../components/messageBox/MessageBox";
 import GameService from "../../services/GameService";
 
 // const games = [
@@ -40,16 +41,51 @@ import GameService from "../../services/GameService";
 
 function GameDatatable(props) {
   const [data, setData] = useState();
+  const [message, setMessage] = useState({
+    type: "",
+    title: "",
+    content: "",
+  });
+  const messageRef = useRef();
 
   useEffect(() => {
-    GameService.getGames().then((res) => {
-      setData(res.data);
-    });
+    GameService.getGames()
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((error) => {
+        // console.log("Loi loi");
+        setMessage({
+          type: "error",
+          title: "Lỗi",
+          content: "Đã có lỗi xảy ra trong quá trình tải dữ liệu",
+        });
+        messageRef.current.active();
+      });
     console.log(data);
   }, []);
 
-  const handleDelete = (type, id) => {
-    setData(data.filter((item) => item.id !== id));
+  const handleDelete = (id) => {
+    setMessage({
+      type: "yesno",
+      title: "Xác nhận",
+      content: "Bạn có muốn xóa game này?",
+      yes: () => {
+        GameService.deleteGame(id)
+          .then((res) => {
+            setData(data.filter((item) => item.id !== id));
+          })
+          .catch((error) => {
+            setMessage({
+              type: "error",
+              title: "Lỗi",
+              content: "Đã có lỗi xảy ra trong quá trình xóa",
+            });
+            messageRef.current.active();
+          });
+      },
+    });
+    messageRef.current.active();
   };
 
   const actionColumn = [
@@ -66,7 +102,7 @@ function GameDatatable(props) {
             </Link>
             <div
               className="deleteButton"
-              onClick={() => handleDelete(params.row.type, params.row.id)}
+              onClick={() => handleDelete(params.row.id)}
             >
               Xóa
             </div>
@@ -92,6 +128,7 @@ function GameDatatable(props) {
         rowsPerPageOptions={[9]}
         // checkboxSelection
       />
+      <MessageBox item={message} ref={messageRef} />
     </div>
   );
 }

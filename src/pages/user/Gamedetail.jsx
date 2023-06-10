@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SliderGameDetail from "../../components/slider/SliderGamedetail/SliderGameDetail";
+import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import GameList from "../../components/gameList/GameList";
-import Header from "../../components/header/Header";
+import {
+  CircularProgressbar,
+  buildStyles,
+  CircularProgressbarWithChildren,
+} from "react-circular-progressbar";
 
+import "react-circular-progressbar/dist/styles.css";
 import "./gamedetail.scss";
+import GameService from "../../services/GameService";
+import { useParams } from "react-router-dom";
+const percentage = 66;
 const gameItems = [
   {
     img: "https://images4.alphacoders.com/115/thumb-1920-1151249.jpg",
@@ -396,36 +405,8 @@ function Gamedetail(props) {
                   <span>Đánh giá tích cực</span>
                 </div>
 
-                <div className="gamedetail__rating__chart__tieucuc">
-                  <CircularProgressbar 
-                    value={85} 
-                    strokeWidth={5}
-                    text={`85%`} 
-                    styles={buildStyles({
-                      strokeLinecap: "butt",
-                      textSize: '16px',
-                      textColor: '#fff',
-                      pathColor: `rgb(255, 199, 96)`,
-                      trailColor: `rgb(29, 29, 29)`,
-                    })}/>
-                    <span>Đánh giá tiêu cực</span>
-                </div>
-
-                <div className="gamedetail__rating__chart__tongquan">
-                <CircularProgressbar 
-                    value={3.5} 
-                    minValue={1}
-                    maxValue={5}
-                    strokeWidth={5}
-                    text={`3.5`} 
-                    styles={buildStyles({
-                      strokeLinecap: "butt",
-                      textSize: '16px',
-                      textColor: '#fff',
-                      pathColor: `rgb(255, 199, 96)`,
-                      trailColor: `rgb(29, 29, 29)`,
-                    })}/>
-                  <span>Tổng quan</span>
+                <div className="gamedetail__introduction__infor__wrapper__dateofsale">
+                  Kết thúc giảm giá vào ngày {game.expirationDate}
                 </div>
               </div>
             </div> */}

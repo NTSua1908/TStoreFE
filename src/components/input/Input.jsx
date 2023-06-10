@@ -71,16 +71,18 @@ function Input(props) {
       <input
         ref={inputRef}
         type="text"
-        value={props.value}
+        // value={props.value}
         placeholder=" "
         onChange={(e) => {
-          props.onChange(e.target.value);
+          props.filled && props.onChange(e.target.value);
         }}
         onInput={(e) => {
           handleInput(e);
         }}
         onFocus={(e) => handleInput(e)}
         onBlur={(e) => {
+          !props.filled && props.onChange(e.target.value);
+          // console.log(props.value);
           if (!props.filled) return;
 
           var isInvalid = false;

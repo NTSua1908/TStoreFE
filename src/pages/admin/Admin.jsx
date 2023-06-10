@@ -1,10 +1,12 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Featured from "../../components/featured/Featured";
 import Chart from "../../components/chart/Chart";
 import Navbar from "../../components/navbar_admin/Navbar";
 import Siderbar from "../../components/siderbar/Siderbar";
 import Widget from "../../components/widget/Widget";
 import "./admin.scss";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const user = {
   name: "Nguyen Thien Sua",
@@ -20,6 +22,14 @@ function Admin(props) {
     sliderRef.current.active();
     console.log("Active");
   };
+
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    console.log(user, user.role, user.role !== "admin");
+    if (user.role !== "admin") navigate("/login");
+  }, []);
 
   return (
     <div className="admin">

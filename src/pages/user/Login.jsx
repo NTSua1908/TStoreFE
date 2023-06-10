@@ -3,6 +3,15 @@ import Input from "../../components/input/Input";
 import "./login.scss";
 import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
+import AuthenticationService from "../../services/AuthenticationService";
+import { useNavigate } from "react-router-dom";
+
+import {
+  authenticate,
+  authFailure,
+  authSuccess,
+} from "../../redux/authActions";
+import { useDispatch, useSelector } from "react-redux";
 
 function Login(props) {
   const [email, setEmail] = useState("");
@@ -10,7 +19,17 @@ function Login(props) {
   const [filled, setFilled] = useState([false, false]);
   const [isCompleted, setCompleted] = useState(false);
 
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   console.log(user);
+  // }, [user]);
+
+  // const user = useSelector((state) => state.user);
+
   const submitRef = useRef();
+
+  const dispath = useDispatch();
 
   useEffect(() => {
     if (filled.indexOf(false) != -1) {
@@ -27,7 +46,37 @@ function Login(props) {
   const handleLogin = () => {
     if (isCompleted) {
       console.log("Login");
-      //do something
+      AuthenticationService.userLogin({
+        userName: email,
+        password: password,
+      })
+        .then((response) => {
+          console.log("response: ", response);
+          if (response.status === 200) {
+            dispath(authSuccess(response.data));
+            console.log("Thanh cong!!!!", response);
+            if (response.data.role === "admin") navigate("/admin");
+            else if (response.data.role === "user") navigate("/");
+            // props.history.push('/dashboard');
+          } else {
+            authFailure("Something Wrong!Please Try Again");
+            console.log("fail");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          if (err && err.response) {
+            switch (err.response.status) {
+              case 401:
+                authFailure("Authentication Failed.Bad Credentials");
+                break;
+              default:
+                authFailure("Something Wrong!Please Try Again");
+            }
+          } else {
+            authFailure("Something Wrong!Please Try Again");
+          }
+        });
     }
   };
 

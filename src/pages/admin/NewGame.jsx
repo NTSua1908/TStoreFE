@@ -8,6 +8,7 @@ import FlatformService from "../../services/FlatformService";
 import GameService from "../../services/GameService";
 import GameTypeService from "../../services/GameTypeService";
 import ProviderService from "../../services/ProviderService";
+import MessageBox from "../../components/messageBox/MessageBox";
 import "./newgame.scss";
 
 const user = {
@@ -60,6 +61,13 @@ function NewGame(props) {
   const [types, setTypes] = useState([]);
   const [flatforms, setFlatforms] = useState([]);
 
+  const [message, setMessage] = useState({
+    type: "",
+    title: "",
+    content: "",
+  });
+  const messageRef = useRef();
+
   useEffect(() => {
     ProviderService.getProviders().then((res) => {
       setProviders(res.data);
@@ -74,6 +82,7 @@ function NewGame(props) {
   }, []);
 
   const [content, setContent] = useState("");
+  const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [developer, setDeveloper] = useState("");
   const [publisher, setPublisher] = useState("");
@@ -358,6 +367,15 @@ function NewGame(props) {
               ))}
             </div>
           </div>
+          <div className="newgame__input-wrapper">
+            <Input
+              placeholder="Mô tả ngắn"
+              value={description}
+              onChange={setDescription}
+              inWhite
+              small
+            />
+          </div>
           <Editor
             onBlur={(data) => {
               setContent(data);
@@ -388,18 +406,27 @@ function NewGame(props) {
                   positiveReview, //: "1",
                   negativeReview, //: "2",
                   overallReview, //: "3",
-                  description: "",
+                  description,
                   content, //: "content ne",
                 };
                 console.log(JSON.stringify(game));
-                GameService.createGame(game);
-
-                // images.forEach(item => {
-                //   var image = {
-                //     image: item,
-                //     gameId:
-                //   }
-                // });
+                GameService.createGame(game)
+                  .then((res) => {
+                    setMessage({
+                      type: "ok",
+                      title: "Hoàn thành",
+                      content: "Thêm game hoàn tất",
+                    });
+                    messageRef.current.active();
+                  })
+                  .catch((error) => {
+                    setMessage({
+                      type: "error",
+                      title: "Thất bại",
+                      content: "Đã có lỗi xảy ra trong quá trình tạo game",
+                    });
+                    messageRef.current.active();
+                  });
               }}
             >
               Thêm đĩa
@@ -408,8 +435,9 @@ function NewGame(props) {
         </div>
 
         {/* {console.log(typeof data)} */}
-        {/* {<div dangerouslySetInnerHTML={{ __html: content }}></div>} */}
+        {<div dangerouslySetInnerHTML={{ __html: content }}></div>}
       </div>
+      <MessageBox ref={messageRef} item={message} />
     </div>
   );
 }
