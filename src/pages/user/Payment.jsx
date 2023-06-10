@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import "../user/payment.scss";
 import logoPNG from "../../assets/logo.png";
@@ -151,6 +151,15 @@ function Payment(props) {
   const [price, setPrice] = useState(17000);
   const [gameItems, setgameItems] = useState(gamelistItems);
 
+  const [address, setAddress] = useState({
+    name: "",
+    location: "",
+    lat: 0,
+    lng: 0,
+    description: "",
+    phone: "",
+  });
+
   const handleradio = (e) => {
     if (e.target.value == "method1") {
       method1.current.classList.add("active");
@@ -168,6 +177,8 @@ function Payment(props) {
     var input = method1.current.querySelector("input");
     input.checked = "true";
     method1.current.classList.add("active");
+
+    if (state) setAddress(state);
   }, []);
 
   useEffect(() => {
@@ -175,6 +186,8 @@ function Payment(props) {
     sum = gamelistItems.reduce((sum, item) => sum + item.price, 0);
     setGameprice(sum);
   }, []);
+
+  const { state } = useLocation();
 
   return (
     <div className="Payment">
@@ -268,15 +281,15 @@ function Payment(props) {
             </div>
             <div className="Payment__wrapper__column2-address-user_infor">
               <h3 className="Payment__wrapper__column2-address-user_infor-name">
-                {addressitem.name}
+                {address.name}
               </h3>
               <i></i>
               <h3 className="Payment__wrapper__column2-address-user_infor-phone">
-                {addressitem.phone}
+                {address.phone}
               </h3>
             </div>
             <p className="Payment__wrapper__column2-address-user-location">
-              {addressitem.location}, {addressitem.description}
+              {address.location}, {address.description}
             </p>
           </div>
 
@@ -315,10 +328,12 @@ function Payment(props) {
               <span>Tổng tiền</span> <span>{Gameprice + price} đ</span>
             </div>
             <div className="Payment__wrapper__column2-bill-button">
-              <button className="Payment__wrapper__column2-bill-button-order">
-                {" "}
-                <h3>Đặt hàng</h3>
-              </button>
+              <Link to="/user/ordersuccess">
+                <button className="Payment__wrapper__column2-bill-button-order">
+                  {" "}
+                  <h3>Đặt hàng</h3>
+                </button>
+              </Link>
             </div>
           </div>
         </div>

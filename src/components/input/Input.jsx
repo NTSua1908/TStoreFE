@@ -6,10 +6,9 @@ function Input(props) {
 
   const inputRef = useRef();
 
-  useEffect(()=>{
-    if (props.disabled)
-      inputRef.current.disabled = true
-  }, [])
+  useEffect(() => {
+    if (props.disabled) inputRef.current.disabled = true;
+  }, []);
 
   const isEmail = (value) => {
     var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -65,11 +64,9 @@ function Input(props) {
 
   return (
     <div
-<<<<<<< HEAD
-      className={`input ${props.inWhite && "white"} ${props.small && "small"} ${props.disabled && "disabled"} `}
-=======
-      className={`input ${props.inWhite && "white"} ${props.small && "small"}`}
->>>>>>> 198f1ba16aa5bfa3acf48c6d0cf3888be76a7416
+      className={`input ${props.inWhite && "white"} ${props.small && "small"} ${
+        props.disabled && "disabled"
+      } `}
     >
       <input
         ref={inputRef}
@@ -121,5 +118,9 @@ function Input(props) {
     </div>
   );
 }
+
+export const log1 = "hello1";
+export const log2 = "hello2";
+export const log3 = "hello3";
 
 export default memo(Input);

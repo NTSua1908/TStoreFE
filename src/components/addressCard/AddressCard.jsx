@@ -29,9 +29,14 @@ function AddressCard(props) {
           <span className="addresscard__information-lat">{`${item.lng}]`}</span>
         </p>
         {props.flag && (
-          <button className="addresscard__information-button">
-            Giao đến địa chỉ này
-          </button>
+          <Link to={"/user/payment"} state={item}>
+            <button
+              className="addresscard__information-button"
+              onClick={() => {}}
+            >
+              Giao đến địa chỉ này
+            </button>
+          </Link>
         )}
       </div>
 

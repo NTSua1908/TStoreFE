@@ -89,11 +89,12 @@
 
         &-button {
           font-family: Brutal, sans-serif;
-          background-color: rgb(28, 28, 28);
+          background-color: $background-color;
           font-size: 14px;
           font-weight: 600;
           align-content: center;
           width: 100%;
+          cursor: pointer;
           padding: 20px 0px;
           border-radius: 4px;
           border-color: rgb(255, 199, 96);
@@ -117,6 +118,10 @@
     margin-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     text-align: center;
+
+    a {
+      text-decoration: none;
+    }
 
     &-button {
       font-family: Brutal, sans-serif;

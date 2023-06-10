@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Geocode from "react-geocode";
 import Map from "../../components/map/Map";
+import Header from "../../components/header/Header";
 import "./address.scss";
 
 import AddressCard from "../../components/addressCard/AddressCard";
@@ -119,6 +120,7 @@ function Address(props) {
   return (
     <div>
       <div className="address">
+        <Header></Header>
         <h1 className="address__title">Thông tin địa chỉ</h1>
         <div className="address__wrapper">
           <div className="address__wrapper__Menu">
@@ -130,10 +132,10 @@ function Address(props) {
             <div className="address__wrapper__Menu__accountcontent">
               <ul className="address__wrapper__Menu__accountcontent__list">
                 <li>
-                  <a href="">
+                  <Link to="/user/information">
                     <ion-icon name="play-circle-outline"></ion-icon>
                     Thông tin tài khoản
-                  </a>
+                  </Link>
                 </li>
 
                 <li>

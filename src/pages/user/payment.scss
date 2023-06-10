@@ -21,6 +21,7 @@
     }
 
     span {
+      cursor: context-menu;
       position: relative;
       font-size: 20px;
       font-weight: 700;
@@ -423,12 +424,16 @@
         }
 
         &-button {
-          margin-top: 20px;
-          margin-bottom: 20px;
-          display: flex;
-          align-items: center;
-          height: 44px;
-          outline: 0px;
+          a {
+            text-decoration: none;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            height: 44px;
+            outline: 0px;
+            width: 100%;
+          }
 
           &-order {
             cursor: pointer;

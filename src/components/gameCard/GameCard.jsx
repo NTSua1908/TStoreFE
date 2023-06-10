@@ -33,7 +33,9 @@ function GameCard(props) {
                   <ion-icon name="heart-outline"></ion-icon>
                 )}
               </div>
-              <Button className="btn btn-detail">Xem thêm</Button>
+              <Button className="btn btn-detail">
+                <Link to="/user/detail"> Xem thêm </Link>
+              </Button>
             </div>
           </div>
         </div>

@@ -88,8 +88,6 @@
   &.white {
     input {
       border: 1px solid rgb(84, 84, 84);
-<<<<<<< HEAD
-=======
       color: #333;
 
       &:focus,
@@ -106,35 +104,6 @@
     label {
       color: #333;
       background-color: #fff;
-    }
-  }
-  &.white.small {
-    margin: 12px 0;
-    input {
-      height: 55px;
-      border: 1px solid rgb(84, 84, 84);
->>>>>>> 198f1ba16aa5bfa3acf48c6d0cf3888be76a7416
-      color: #333;
-
-      &:focus,
-      &.empty:focus {
-        border-color: rgb(0, 8, 255) !important;
-        border-width: 2px;
-      }
-
-      &:focus + label,
-      &:not(:placeholder-shown) + label {
-        color: #333;
-        font-size: 12px;
-      }
-    }
-    label {
-      color: #333;
-      background-color: #fff;
-<<<<<<< HEAD
-=======
-      font-size: 17px;
->>>>>>> 198f1ba16aa5bfa3acf48c6d0cf3888be76a7416
     }
   }
   &.white.small {
@@ -162,5 +131,29 @@
       font-size: 17px;
     }
   }
+  &.white.small {
+    margin: 12px 0;
+    input {
+      height: 55px;
+      border: 1px solid rgb(84, 84, 84);
+      color: #333;
 
+      &:focus,
+      &.empty:focus {
+        border-color: rgb(0, 8, 255) !important;
+        border-width: 2px;
+      }
+
+      &:focus + label,
+      &:not(:placeholder-shown) + label {
+        color: #333;
+        font-size: 12px;
+      }
+    }
+    label {
+      color: #333;
+      background-color: #fff;
+      font-size: 17px;
+    }
+  }
 }

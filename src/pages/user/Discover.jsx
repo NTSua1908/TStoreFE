@@ -5,6 +5,7 @@ import GameGrid from "../../components/gameGrid/GameGrid";
 import "./discover.scss";
 import Paging from "../../components/paging/Paging";
 import Header from "../../components/header/Header";
+import { Link, useLocation } from "react-router-dom";
 
 const features = [
   "Một người chơi",
@@ -46,6 +47,8 @@ const genre = [
   "Các môn thể thao",
   "Dungeon Crawler",
 ];
+
+const console = ["PS4", "PS5", "Nintendo"];
 
 const gameItems = [
   {
@@ -176,6 +179,33 @@ const gameItems = [
   },
 ];
 
+const category = [
+  {
+    name: "Đĩa game PS4",
+    link: "abc",
+  },
+  {
+    name: "Đĩa game PS5",
+    link: "bcd",
+  },
+  {
+    name: "Game sắp có",
+    link: "cde",
+  },
+  {
+    name: "Đĩa PS4 cũ",
+    link: "efg",
+  },
+  {
+    name: "Game switch",
+    link: "ghj",
+  },
+  {
+    name: "Game Xbox",
+    link: "jkl",
+  },
+];
+
 function Discover(props) {
   const filterRef = useRef();
 
@@ -196,21 +226,53 @@ function Discover(props) {
     <div className="discover">
       <Header />
       <div className="discover__wrapper">
-        <Search />
-        <div
-          className="discover__filter-title"
-          onClick={handleFilter}
-          title="Nhấn để lọc"
-        >
-          Bộ lọc<ion-icon name="filter-outline"></ion-icon>
+        <div className="discover__address">
+          <div className="discover__address__container">
+            <a className="discover__address__container__home" href="">
+              Trang chủ
+            </a>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+
+            <span className="">Khám phá</span>
+          </div>
         </div>
-        <div
-          className="discover__filter-title menu"
-          onClick={handleActiveFilter}
-          title="Hiển thị bộ lọc"
-        >
-          Bộ lọc<ion-icon name="filter-outline"></ion-icon>
+
+        <div className="discover__filter-category">
+          <div
+            className="discover__filter-clearfix"
+            style={{ display: "flex" }}
+          >
+            {category.map((item, index) => {
+              return (
+                <div className="discover__filter-clearfix-container">
+                  <a
+                    href={item.link}
+                    className="discover__filter-clearfix-item"
+                  >
+                    <span>{item.name}</span>
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+
+          <div
+            className="discover__filter-title"
+            onClick={handleFilter}
+            title="Nhấn để lọc"
+          >
+            {" "}
+            Bộ lọc <ion-icon name="filter-outline"></ion-icon>
+          </div>
+          <div
+            className="discover__filter-title menu"
+            onClick={handleActiveFilter}
+            title="Hiển thị bộ lọc"
+          >
+            Bộ lọc<ion-icon name="filter-outline"></ion-icon>
+          </div>
         </div>
+
         <div className="discover__container">
           <div className="discover__list">
             <GameGrid item={gameItems} />
@@ -220,6 +282,7 @@ function Discover(props) {
             <div className="discover__filter-container">
               <DropdownList title="Đặc điểm" item={features} name="Features" />
               <DropdownList title="Thể loại" item={genre} name="Genre" />
+              <DropdownList title="Hệ máy" item={console} name="Console" />
             </div>
             <div className="discover__filter-control">
               <div

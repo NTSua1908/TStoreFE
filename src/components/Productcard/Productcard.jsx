@@ -23,7 +23,12 @@ function Productcard(props) {
                 value="-"
                 class="productcard__wrapper-content-container-quantity__minus"
                 onClick={() => {
-                  amount > 0 && setAmount(amount - 1);
+                  if (amount > 0) {
+                    setAmount(amount - 1);
+                    var quantity = [...props.quantity];
+                    quantity[props.index] = amount - 1;
+                    props.setQuantity([...quantity]);
+                  }
                 }}
               />
               <input
@@ -44,6 +49,9 @@ function Productcard(props) {
                 class="productcard__wrapper-content-container-quantity__plus"
                 onClick={() => {
                   setAmount(amount + 1);
+                  var quantity = [...props.quantity];
+                  quantity[props.index] = amount + 1;
+                  props.setQuantity([...quantity]);
                 }}
               />
             </div>

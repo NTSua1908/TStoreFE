@@ -113,12 +113,27 @@ function Header(props) {
               </Button>
             </div>
           ) : (
-            <ul className="header__user">
-              <span className="username">Nguyen Thien Sua</span>
-              <div className="avatar__container">
-                <img src={logoPNG} alt="" />
-              </div>
-            </ul>
+            <Link to="/user/information">
+              <ul className="header__user">
+                <span className="username">
+                  Nguyen Thien Sua
+                  <ul className="header__user-sublist">
+                    <li>
+                      <Link to="/user/information">Tài khoản của tôi</Link>
+                    </li>
+                    <li>
+                      <Link to="/user/cart">Giỏ hàng</Link>
+                    </li>
+                    <li>
+                      <Link to="/">Đăng xuất</Link>
+                    </li>
+                  </ul>
+                </span>
+                <div className="avatar__container">
+                  <img src={logoPNG} alt="" />
+                </div>
+              </ul>
+            </Link>
           )}
         </nav>
       </div>

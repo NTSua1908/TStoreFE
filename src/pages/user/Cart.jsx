@@ -3,6 +3,8 @@ import Productcard from "../../components/Productcard/Productcard";
 import Header from "../../components/header/Header";
 import GameList from "../../components/gameList/GameList";
 import Footer from "../../components/footer/Footer";
+
+import { Link } from "react-router-dom";
 import "./cart.scss";
 
 const gamelistItems = [
@@ -101,12 +103,30 @@ const gamelistItems = [
 function Cart(props) {
   const [items, setItems] = useState(gamelistItems);
   const [Gameprice, setGameprice] = useState();
+  const [quantity, setQuantity] = useState([]);
 
   useEffect(() => {
+    var arrQuantity = [];
+    items.forEach((item) => {
+      arrQuantity = [...arrQuantity, 1];
+      console.log(item);
+    });
+    setQuantity(arrQuantity);
+
     var sum = 0;
     sum = gamelistItems.reduce((sum, item) => sum + item.price, 0);
     setGameprice(sum);
   }, []);
+
+  useEffect(() => {
+    // console.log(quantity);
+    var sum = 0;
+    sum = gamelistItems.reduce(
+      (sum, item, index) => sum + item.price * quantity[index],
+      0
+    );
+    setGameprice(sum);
+  }, [quantity]);
 
   return (
     <div className="Cart">
@@ -123,11 +143,14 @@ function Cart(props) {
           {items.map((item, index) => (
             <Productcard
               key={index}
+              index={index}
               item={item}
               onDelete={() => {
                 setItems(items.filter((i) => i != item));
                 //
               }}
+              setQuantity={setQuantity}
+              quantity={quantity}
               // onClick={() => {
               //   handleEdit(item);
               //   console.log("Click");
@@ -146,15 +169,21 @@ function Cart(props) {
               <span>{Gameprice} đ</span>
             </div>
             <div className="Cart__wrapper-bill-container-buttonsection">
-              <button className="Cart__wrapper-bill-container-button">
-                thanh toán
-              </button>
+              <Link to="/user/payment">
+                <button className="Cart__wrapper-bill-container-button">
+                  thanh toán
+                </button>
+              </Link>
             </div>
           </div>
         </div>
       </div>
       <div className="Cart__continue-buy">
-        <button className="Cart__continue-buy-button">tiếp tục mua hàng</button>
+        <Link to="/">
+          <button className="Cart__continue-buy-button">
+            tiếp tục mua hàng
+          </button>
+        </Link>
       </div>
       <div className="Cart__gamedaxem">
         <span className="Cart__gamedaxem__title">Sản phẩm đã xem</span>

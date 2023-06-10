@@ -10,11 +10,7 @@
   padding-right: $padding;
   width: 100%;
   height: 100%;
-<<<<<<< HEAD
   background-color: $background-color;
-=======
-  background-color: rgb(28, 28, 28);
->>>>>>> 198f1ba16aa5bfa3acf48c6d0cf3888be76a7416
 
   &__wrapper {
     display: flex;
@@ -297,7 +293,7 @@
             transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
             &:hover {
-              box-shadow: inset 205px 0 0 0 rgb(255, 199, 96);
+              box-shadow: inset 230px 0 0 0 rgb(255, 199, 96);
               color: rgb(28, 28, 28);
             }
           }

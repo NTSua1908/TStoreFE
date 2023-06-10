@@ -38,6 +38,10 @@
     &-button {
       margin-top: 30px;
       width: 25%;
+      cursor: pointer;
+      a {
+        text-decoration: none;
+      }
       &-return {
         font-family: Brutal, sans-serif;
         background-color: rgb(28, 28, 28);
